@@ -79,7 +79,7 @@ namespace RT
 		public string similar { get; set; }
 	}
 
-	public class Movie
+	public class Movie : IMovie
 	{
 		public string id { get; set; }
 		public string title { get; set; }
@@ -111,16 +111,8 @@ namespace RT
 			movies = new List<Movie> ();
 		}
 	}
-
-	public class Ratings2
-	{
-		public string critics_rating { get; set; }
-		public int critics_score { get; set; }
-		public string audience_rating { get; set; }
-		public int audience_score { get; set; }
-	}
-
-	public class Movie2
+		
+	public class Movie2 : IMovie
 	{
 		public string id { get; set; }
 		public string title { get; set; }
@@ -129,10 +121,10 @@ namespace RT
 		public int runtime { get; set; }
 		public string critics_consensus { get; set; }
 		public ReleaseDates release_dates { get; set; }
-		public Ratings2 ratings { get; set; }
+		public Ratings ratings { get; set; }
 		public string synopsis { get; set; }
 		public Posters posters { get; set; }
-		public List<object> abridged_cast { get; set; }
+		public List<AbridgedCast> abridged_cast { get; set; }
 		public AlternateIds alternate_ids { get; set; }
 		public Links links { get; set; }
 	}
@@ -147,7 +139,8 @@ namespace RT
 		}
 	}
 
-	public class Movie3
+
+	public class Movie3 : IMovie
 	{
 		public string id { get; set; }
 		public string title { get; set; }
@@ -156,12 +149,26 @@ namespace RT
 		public int runtime { get; set; }
 		public string critics_consensus { get; set; }
 		public ReleaseDates release_dates { get; set; }
-		public Ratings2 ratings { get; set; }
+		public Ratings ratings { get; set; }
 		public string synopsis { get; set; }
 		public Posters posters { get; set; }
-		public List<object> abridged_cast { get; set; }
+		public List<AbridgedCast> abridged_cast { get; set; }
 		public AlternateIds alternate_ids { get; set; }
 		public Links links { get; set; }
+	}
+
+	public interface IMovie 
+	{
+		string title {get; set;}
+		string mpaa_rating { get; set; }
+		string critics_consensus { get; set; }
+		int runtime { get; set; }
+		Ratings ratings { get; set; }
+
+		ReleaseDates release_dates { get; set; }
+		Posters posters { get; set; }
+
+
 	}
 
 	public class Links3

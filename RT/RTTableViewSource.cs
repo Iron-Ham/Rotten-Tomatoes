@@ -49,7 +49,7 @@ namespace RT
 			case 1:
 				return topBox.movies.Count;
 			case 2:
-				return inTheaters.total;
+				return inTheaters.movies.Count;
 			default:
 				return -1;
 			}
@@ -76,9 +76,24 @@ namespace RT
 				cell = new RTTableViewCell ();
 			
 			// TODO: populate the cell with the appropriate data based on the indexPath
-			cell.DetailTextLabel.Text = "DetailsTextLabel";
-
-			return cell;
+			switch (indexPath.Section) {
+			case 0: 
+				//Opening This Week
+				IMovie openingFilm = openingMovies.movies [indexPath.Row];
+				cell.UpdateCell (openingFilm);
+				Console.WriteLine (cell.Frame.Size.Height +"\t"+ cell.Frame.Size.Width);
+				return cell;
+			case 1:
+				IMovie topFilm = topBox.movies[indexPath.Row];
+				cell.UpdateCell(topFilm);
+				return cell;
+			case 2:
+				IMovie alsoRanFilm = inTheaters.movies[indexPath.Row];
+				cell.UpdateCell(alsoRanFilm);
+				return cell;
+			default:
+				return cell;
+			}
 		}
 	}
 }
