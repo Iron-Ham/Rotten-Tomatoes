@@ -18,7 +18,7 @@ namespace RT
 		public async Task<TopBoxRootObject> RetrieveTopBox()
 		{
 			var client = new HttpClient ();
-			var result = await client.GetStringAsync ("http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=mrfz362ume2tmxb7ugbm6p22");
+			var result = await client.GetStringAsync (RTApiUrls.topBoxOffice);
 			return JsonConvert.DeserializeObject<TopBoxRootObject> (result);
 		}
 		public async Task<InTheatersRootObject> RetrieveInTheaters()
@@ -164,7 +164,7 @@ namespace RT
 		string critics_consensus { get; set; }
 		int runtime { get; set; }
 		Ratings ratings { get; set; }
-
+		List<AbridgedCast> abridged_cast { get; set; }
 		ReleaseDates release_dates { get; set; }
 		Posters posters { get; set; }
 

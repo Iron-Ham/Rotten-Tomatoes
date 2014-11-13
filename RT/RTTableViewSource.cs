@@ -81,7 +81,7 @@ namespace RT
 				//Opening This Week
 				IMovie openingFilm = openingMovies.movies [indexPath.Row];
 				cell.UpdateCell (openingFilm);
-				Console.WriteLine (cell.Frame.Size.Height +"\t"+ cell.Frame.Size.Width);
+
 				return cell;
 			case 1:
 				IMovie topFilm = topBox.movies[indexPath.Row];
