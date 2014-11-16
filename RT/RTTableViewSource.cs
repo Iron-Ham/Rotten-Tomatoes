@@ -22,7 +22,7 @@ namespace RT
 
 			if (OnRowSelect != null)
 			{
-				OnRowSelect(indexPath.Row);
+				OnRowSelect(indexPath.Section, indexPath.Row);
 			}
 		}
 
@@ -55,6 +55,8 @@ namespace RT
 			}
 		}
 
+
+	
 		public override string TitleForHeader (UITableView tableView, int section)
 		{
 			switch (section) {
@@ -69,12 +71,12 @@ namespace RT
 			}
 		}
 
+
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			var cell = tableView.DequeueReusableCell (RTTableViewCell.Key) as RTTableViewCell;
 			if (cell == null)
 				cell = new RTTableViewCell ();
-			
 			// TODO: populate the cell with the appropriate data based on the indexPath
 			switch (indexPath.Section) {
 			case 0: 
@@ -94,6 +96,11 @@ namespace RT
 			default:
 				return cell;
 			}
+		}
+
+		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+		{
+			return 100f;
 		}
 	}
 }

@@ -19,6 +19,7 @@ namespace RT
 			this.navControl = navControl;
 		}
 
+
 		public override void DidReceiveMemoryWarning ()
 		{
 			// Releases the view if it doesn't have a superview.
@@ -35,7 +36,29 @@ namespace RT
 			TableView = new UITableView(Rectangle.Empty) {Source = source};
 			RefreshControl = new UIRefreshControl();
 			RefreshControl.ValueChanged += RefreshControlOnValueChanged;
+			source.OnRowSelect = OnRowSelect; 
+		}
 
+		private void OnRowSelect(int section, int row)
+		{
+			IMovie movie;
+			switch (section) {
+			case 0:
+				movie = source.openingMovies [row];
+				break; 
+			case 1:
+				movie = source.topBox [row];
+				break;
+			case 2:
+				movie = source.inTheaters [row];
+				break;
+			default:
+				Console.WriteLine ("Error on row select");
+				break;
+			}
+			navControl.PushViewController(new RTMovieViewController(movie);
+
+			//navigationController.PushViewController(new EntryViewController(entry.Title, entry.Url), true);
 		}
 
 		public async override void ViewDidAppear (bool animated)

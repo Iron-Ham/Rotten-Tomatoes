@@ -86,6 +86,7 @@ namespace RT
 		public int year { get; set; }
 		public string mpaa_rating { get; set; }
 		public int runtime { get; set; }
+		public string Runtime {get; set;}
 		public ReleaseDates release_dates { get; set; }
 		public Ratings ratings { get; set; }
 		public string synopsis { get; set; }
@@ -119,6 +120,7 @@ namespace RT
 		public int year { get; set; }
 		public string mpaa_rating { get; set; }
 		public int runtime { get; set; }
+		public string Runtime {get; set;}
 		public string critics_consensus { get; set; }
 		public ReleaseDates release_dates { get; set; }
 		public Ratings ratings { get; set; }
@@ -147,6 +149,7 @@ namespace RT
 		public int year { get; set; }
 		public string mpaa_rating { get; set; }
 		public int runtime { get; set; }
+		public string Runtime {get; set;}
 		public string critics_consensus { get; set; }
 		public ReleaseDates release_dates { get; set; }
 		public Ratings ratings { get; set; }
@@ -167,8 +170,7 @@ namespace RT
 		List<AbridgedCast> abridged_cast { get; set; }
 		ReleaseDates release_dates { get; set; }
 		Posters posters { get; set; }
-
-
+		string Runtime {get; set;}
 	}
 
 	public class Links3

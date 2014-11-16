@@ -97,6 +97,11 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Resources\CF_120x120.png" />
+    <BundleResource Include="Resources\fresh.png" />
+    <BundleResource Include="Resources\popcorn.png" />
+    <BundleResource Include="Resources\rotten.png" />
+    <BundleResource Include="Resources\spilt.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
