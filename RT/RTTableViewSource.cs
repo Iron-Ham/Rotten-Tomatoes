@@ -13,7 +13,7 @@ namespace RT
 		public TopBoxRootObject topBox { get; set;} 
 		public InTheatersRootObject inTheaters { get; set;} 
 		public OpeningRootObject openingMovies { get; set;}
-		public Action<int> OnRowSelect;
+		public Action<int, int> OnRowSelect;
 		private const string ValueCell = "Id";
 
 		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
@@ -25,6 +25,7 @@ namespace RT
 				OnRowSelect(indexPath.Section, indexPath.Row);
 			}
 		}
+
 
 		public RTTableViewSource ()
 		{
@@ -104,4 +105,3 @@ namespace RT
 		}
 	}
 }
-

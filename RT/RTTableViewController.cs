@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Threading.Tasks;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using MonoTouch.Dialog;
 
 namespace RT
 {
@@ -19,15 +20,6 @@ namespace RT
 			this.navControl = navControl;
 		}
 
-
-		public override void DidReceiveMemoryWarning ()
-		{
-			// Releases the view if it doesn't have a superview.
-			base.DidReceiveMemoryWarning ();
-			
-			// Release any cached data, images, etc that aren't in use.
-		}
-
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
@@ -41,30 +33,30 @@ namespace RT
 
 		private void OnRowSelect(int section, int row)
 		{
-			IMovie movie;
+			IMovie movie=null;
 			switch (section) {
 			case 0:
-				movie = source.openingMovies [row];
+				movie = source.openingMovies.movies [row];
 				break; 
 			case 1:
-				movie = source.topBox [row];
+				movie = source.topBox.movies [row];
 				break;
 			case 2:
-				movie = source.inTheaters [row];
+				movie = source.inTheaters.movies [row];
 				break;
 			default:
 				Console.WriteLine ("Error on row select");
 				break;
 			}
-			navControl.PushViewController(new RTMovieViewController(movie);
+			RTMovieView movieView = new RTMovieView ();
+			RootElement r = movieView.getUI (movie);
 
-			//navigationController.PushViewController(new EntryViewController(entry.Title, entry.Url), true);
+			navControl.PushViewController(new RTMovieView(), true);
 		}
 
 		public async override void ViewDidAppear (bool animated)
 		{
 			base.ViewDidAppear (animated);
-
 			await LoadMoviesAsync ();
 		}
 
@@ -79,14 +71,12 @@ namespace RT
 			var topBox 		  = await repository.RetrieveTopBox();
 			var inTheaters 	  = await repository.RetrieveInTheaters ();
 			var openingMovies = await repository.RetrieveOpeningMovies ();
-
-
+			
 			source.openingMovies = openingMovies;
-			source.topBox = topBox;
-			source.inTheaters = inTheaters;
+			source.topBox        = topBox;
+			source.inTheaters    = inTheaters;
 
 			TableView.ReloadData();
 		}
 	}
 }
-
