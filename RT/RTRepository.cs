@@ -33,6 +33,20 @@ namespace RT
 			var result = await client.GetStringAsync (RTApiUrls.openingMovies);
 			return JsonConvert.DeserializeObject<OpeningRootObject> (result);
 		}
+
+		public async Task<MovieRootObject> RetrieveMovieDetails(string url)
+		{
+			var client = new HttpClient ();
+			var result = await client.GetStringAsync (url);
+			return JsonConvert.DeserializeObject<MovieRootObject> (result);
+		}
+
+		public async Task<ReviewRootObject> RetrieveReviews(string url)
+		{
+			var client = new HttpClient ();
+			var result = await client.GetStringAsync (url);
+			return JsonConvert.DeserializeObject<ReviewRootObject> (result);
+		}
 	}
 
 
@@ -70,7 +84,7 @@ namespace RT
 		public string imdb { get; set; }
 	}
 
-	public class Links
+	public class Links 
 	{
 		public string self { get; set; }
 		public string alternate { get; set; }
@@ -170,7 +184,9 @@ namespace RT
 		List<AbridgedCast> abridged_cast { get; set; }
 		ReleaseDates release_dates { get; set; }
 		Posters posters { get; set; }
-		string Runtime {get; set;}
+		string Runtime {get; set; }
+		string synopsis {get; set; }
+		Links links {get; set;}
 	}
 
 	public class Links3
@@ -179,7 +195,7 @@ namespace RT
 		public string next { get; set; }
 		public string alternate { get; set; }
 	}
-
+		
 	public class InTheatersRootObject
 	{
 		public int total { get; set; }
@@ -190,5 +206,65 @@ namespace RT
 			movies = new List<Movie3> ();
 		}
 	}
+
+	public class AbridgedDirector
+	{
+		public string name { get; set; }
+	}
+
+	public class MovieRootObject
+	{
+		public int id { get; set; }
+		public string title { get; set; }
+		public int year { get; set; }
+		public List<string> genres { get; set; }
+		public string mpaa_rating { get; set; }
+		public int runtime { get; set; }
+		public string critics_consensus { get; set; }
+		public ReleaseDates release_dates { get; set; }
+		public Ratings ratings { get; set; }
+		public string synopsis { get; set; }
+		public Posters posters { get; set; }
+		public List<AbridgedCast> abridged_cast { get; set; }
+		public List<AbridgedDirector> abridged_directors { get; set; }
+		public string studio { get; set; }
+		public AlternateIds alternate_ids { get; set; }
+		public Links links { get; set; }
+	}
+
+
+	public class ReviewLinks
+	{
+		public string review { get; set; }
+	}
+
+	public class Review
+	{
+		public string critic { get; set; }
+		public string date { get; set; }
+		public string original_score { get; set; }
+		public string freshness { get; set; }
+		public string publication { get; set; }
+		public string quote { get; set; }
+		public ReviewLinks links { get; set; }
+	}
+
+	public class ReviewLinks2
+	{
+		public string self { get; set; }
+		public string next { get; set; }
+		public string alternate { get; set; }
+		public string rel { get; set; }
+	}
+
+	public class ReviewRootObject
+	{
+		public int total { get; set; }
+		public List<Review> reviews { get; set; }
+		public ReviewLinks2 links { get; set; }
+		public string link_template { get; set; }
+	}
+
+
 }
 

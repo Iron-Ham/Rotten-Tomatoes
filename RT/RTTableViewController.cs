@@ -31,7 +31,7 @@ namespace RT
 			source.OnRowSelect = OnRowSelect; 
 		}
 
-		private void OnRowSelect(int section, int row)
+		private async void OnRowSelect(int section, int row)
 		{
 			IMovie movie=null;
 			switch (section) {
@@ -48,10 +48,15 @@ namespace RT
 				Console.WriteLine ("Error on row select");
 				break;
 			}
-			RTMovieView movieView = new RTMovieView ();
-			RootElement r = movieView.getUI (movie);
 
-			navControl.PushViewController(new RTMovieView(), true);
+			MovieRootObject r = new MovieRootObject ();
+			r = await repository.RetrieveMovieDetails (movie.links.self + RTApiUrls.APIKey);
+			ReviewRootObject q = new ReviewRootObject ();
+			q = await repository.RetrieveReviews (movie.links.reviews + RTApiUrls.APIKey);
+
+			RTMovieView movieView = new RTMovieView (r, q);
+			var movieDialog = new DialogViewController (movieView.getUI(), true);
+			navControl.PushViewController(movieDialog, true);
 		}
 
 		public async override void ViewDidAppear (bool animated)
