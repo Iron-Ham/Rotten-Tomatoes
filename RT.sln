@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RT", "RT\RT.csproj", "{5E03A6BB-23DE-4013-9692-743076E7760F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RT.iOS", "RT\RT.iOS.csproj", "{5E03A6BB-23DE-4013-9692-743076E7760F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RT.UITests", "RT.UITests\RT.UITests.csproj", "{55C0F1A0-80D6-47EB-B321-CB159C48510D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,18 @@ Global
 		AppStore|iPhone = AppStore|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55C0F1A0-80D6-47EB-B321-CB159C48510D}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{55C0F1A0-80D6-47EB-B321-CB159C48510D}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{55C0F1A0-80D6-47EB-B321-CB159C48510D}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{55C0F1A0-80D6-47EB-B321-CB159C48510D}.AppStore|iPhone.Build.0 = Release|Any CPU
+		{55C0F1A0-80D6-47EB-B321-CB159C48510D}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{55C0F1A0-80D6-47EB-B321-CB159C48510D}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{55C0F1A0-80D6-47EB-B321-CB159C48510D}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{55C0F1A0-80D6-47EB-B321-CB159C48510D}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{55C0F1A0-80D6-47EB-B321-CB159C48510D}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{55C0F1A0-80D6-47EB-B321-CB159C48510D}.Release|iPhone.Build.0 = Release|Any CPU
+		{55C0F1A0-80D6-47EB-B321-CB159C48510D}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{55C0F1A0-80D6-47EB-B321-CB159C48510D}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{5E03A6BB-23DE-4013-9692-743076E7760F}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
 		{5E03A6BB-23DE-4013-9692-743076E7760F}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
 		{5E03A6BB-23DE-4013-9692-743076E7760F}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
@@ -27,6 +41,6 @@ Global
 		{5E03A6BB-23DE-4013-9692-743076E7760F}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = RT\RT.csproj
+		StartupItem = RT\RT.iOS.csproj
 	EndGlobalSection
 EndGlobal

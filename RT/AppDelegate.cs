@@ -36,6 +36,9 @@ namespace RT
 			};
 			navControl.PushViewController (new RTTableViewController (navControl), false);
 			Window.MakeKeyAndVisible ();
+			#if DEBUG
+			Xamarin.Calabash.Start();
+			#endif
 			return true;
 		}
 	}
