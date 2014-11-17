@@ -12,7 +12,7 @@ namespace RT
 		public static readonly NSString Key = new NSString ("RTTableViewCell");
 		public UILabel MovieTitle, CriticScore, abridgedCast, RatingAndLength, Date;
 		public UIImageView Thumbnail, Freshness;
-		public RTTableViewCell () : base (UITableViewCellStyle.Default, Key)
+		public RTTableViewCell (string id) : base (UITableViewCellStyle.Default, id)
 		{
 			Thumbnail = new UIImageView ();
 			Freshness = new UIImageView ();

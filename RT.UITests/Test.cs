@@ -37,6 +37,14 @@ namespace RT.UITests
 		[Test ()]
 		public void TestCase ()
 		{
+			Func<AppQuery, AppQuery> topBoxOffice = e => e.Id ("topBox0");  
+			Func<AppQuery, AppQuery> tableView = e => e.Id ("TableView");                     
+
+			_app.ScrollDown (tableView);
+			_app.WaitForElement (topBoxOffice);
+			var cell = _app.Query (topBoxOffice).SingleOrDefault();
+			var rating = cell.Label;
+			Assert.Equals (rating, "Rotten");    
 		}
 	}
 }

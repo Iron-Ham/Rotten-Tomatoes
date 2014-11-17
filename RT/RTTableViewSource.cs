@@ -15,6 +15,8 @@ namespace RT
 		public OpeningRootObject openingMovies { get; set;}
 		public Action<int, int> OnRowSelect;
 		private const string ValueCell = "Id";
+		private NSString ID = (NSString) "Id";
+
 
 		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
@@ -75,17 +77,19 @@ namespace RT
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			var cell = tableView.DequeueReusableCell (RTTableViewCell.Key) as RTTableViewCell;
+			var cell = tableView.DequeueReusableCell (ValueCell) as RTTableViewCell;
 			if (cell == null)
-				cell = new RTTableViewCell ();
+				cell = new RTTableViewCell (ID);
 			switch (indexPath.Section) {
 			case 0: 
 				IMovie openingFilm = openingMovies.movies [indexPath.Row];
 				cell.UpdateCell (openingFilm);
 				return cell;
 			case 1:
-				IMovie topFilm = topBox.movies[indexPath.Row];
-				cell.UpdateCell(topFilm);
+				IMovie topFilm = topBox.movies [indexPath.Row];
+				cell.UpdateCell (topFilm);
+				cell.AccessibilityIdentifier = "topBox" + indexPath.Row;
+				cell.AccessibilityLabel = topFilm.ratings.critics_rating;
 				return cell;
 			case 2:
 				IMovie alsoRanFilm = inTheaters.movies[indexPath.Row];

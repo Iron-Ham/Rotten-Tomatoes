@@ -12,7 +12,6 @@ namespace RT
 	{
 		private readonly UINavigationController navControl;
 		private readonly RTRepository repository = new RTRepository();
-
 		private RTTableViewSource source; 
 
 		public RTTableViewController (UINavigationController navControl) 
@@ -27,6 +26,7 @@ namespace RT
 			// Register the TableView's data source
 			source = new RTTableViewSource ();
 			TableView = new UITableView(Rectangle.Empty) {Source = source};
+			TableView.AccessibilityIdentifier = "TableView";
 			RefreshControl = new UIRefreshControl();
 			RefreshControl.ValueChanged += RefreshControlOnValueChanged;
 			source.OnRowSelect = OnRowSelect; 
