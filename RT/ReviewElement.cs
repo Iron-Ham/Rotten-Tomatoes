@@ -32,13 +32,16 @@ namespace RT
 			critic = new UILabel () {
 				Text = R.critic
 			};
+			critic.Font = UIFont.BoldSystemFontOfSize (16f);
 			publication = new UILabel () {
 				Text = R.publication
 			};
+			publication.Font = UIFont.BoldSystemFontOfSize (16f);
 			quote = new UILabel () {
 				Text = R.quote
 			};
-			quote.Lines = 2; 
+			quote.Lines = 3; 
+			quote.Font = UIFont.SystemFontOfSize (14f);
 			quote.LineBreakMode = UILineBreakMode.TailTruncation;
 			ContentView.Add (rcv);
 			ContentView.Add (freshness);
@@ -53,9 +56,9 @@ namespace RT
 			rcv.Frame = ContentView.Bounds;
 			rcv.SetNeedsDisplay ();
 			freshness.Frame = new RectangleF(5, 5, 15, 15);
-			critic.Frame = new RectangleF(25, 5, 295, 15);
-			publication.Frame = new RectangleF(25, 20, 315, 15);
-			quote.Frame = new RectangleF(5, 30, 315, 70); 
+			critic.Frame = new RectangleF(25, 5, 295, 20);
+			publication.Frame = new RectangleF(25, 25, 315, 20);
+			quote.Frame = new RectangleF(5, 35, 315, 70); 
 
 		}
 
