@@ -2,30 +2,98 @@
 using MonoTouch.Dialog;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
+using System.Drawing;
 
 
 namespace RT
 {
-	public class ReviewElement : StyledMultilineElement, IElementSizing
+	public class ReviewCellView : UIView {
+		Review R = new Review();
+		public ReviewCellView(Review R){
+			Update (R);
+		}
+		public void Update (Review R)
+		{
+			this.R = R; 
+			SetNeedsDisplay ();
+		}
+	}
+
+	public class ReviewCell : UITableViewCell {
+		ReviewCellView rcv; 
+		UILabel publication, critic, quote; 
+		UIImageView freshness = new UIImageView(); 
+
+
+		public ReviewCell(Review R, NSString identKey) : base (UITableViewCellStyle.Default, identKey)
+		{
+			rcv = new ReviewCellView (R);
+			freshness.Image = (R.freshness == "fresh") ? UIImage.FromBundle ("fresh.png") : UIImage.FromBundle ("rotten.png");
+			critic = new UILabel () {
+				Text = R.critic
+			};
+			publication = new UILabel () {
+				Text = R.publication
+			};
+			quote = new UILabel () {
+				Text = R.quote
+			};
+			quote.Lines = 2; 
+			quote.LineBreakMode = UILineBreakMode.TailTruncation;
+			ContentView.Add (rcv);
+			ContentView.Add (freshness);
+			ContentView.Add (critic);
+			ContentView.Add (publication);
+			ContentView.Add (quote);
+		}
+
+		public override void LayoutSubviews ()
+		{
+			base.LayoutSubviews ();
+			rcv.Frame = ContentView.Bounds;
+			rcv.SetNeedsDisplay ();
+			freshness.Frame = new RectangleF(5, 5, 15, 15);
+			critic.Frame = new RectangleF(25, 5, 295, 15);
+			publication.Frame = new RectangleF(25, 20, 315, 15);
+			quote.Frame = new RectangleF(5, 30, 315, 70); 
+
+		}
+
+		public void Updatecell (Review newData)
+		{
+			rcv.Update (newData);
+		}
+
+	}
+
+
+	public class ReviewElement : Element, IElementSizing
 	{
-		Review r = new Review();
-		public ReviewElement (string reviewText, Review R) : base (reviewText)
+		static NSString key = new NSString ("myReviewElement");
+		public Review r; 
+
+		public ReviewElement (Review R) : base (null)
 		{
 			r = R; 
 		}
+		readonly float cellHeight = 100f;
+		public float GetHeight (UITableView tableView, NSIndexPath indexPath)
+		{
+			return cellHeight;
+		}
 
-		// To retrieve the UITableViewCell for your element
-		// you would need to prepare the cell to be reused, in the
-		// same way that UITableView expects reusable cells to work
-		public override UITableViewCell GetCell (UITableView tv) {
-			var cell = tv.DequeueReusableCell ("ViewCell") as UITableViewCell;
+
+		public override UITableViewCell GetCell (UITableView tv)
+		{
+			var cell = tv.DequeueReusableCell (key) as ReviewCell;
 			if (cell == null)
-				cell = new UITableViewCell ();
+				cell = new ReviewCell (r, key);
 			return cell;
+
 		}
 		// To detect when the user has tapped on the cell
 		public override void Selected (DialogViewController dvc, UITableView tableView, NSIndexPath path) {
-
+			dvc.NavigationController.PushViewController (new ReviewView (r.publication, r.links.review), true);
 		}
 	}
 }

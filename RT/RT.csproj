@@ -119,6 +119,7 @@
     <Compile Include="RTTableViewSource.cs" />
     <Compile Include="RTMovieView.cs" />
     <Compile Include="ReviewElement.cs" />
+    <Compile Include="ReviewView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
 </Project>

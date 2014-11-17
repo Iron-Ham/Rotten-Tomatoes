@@ -54,7 +54,7 @@ namespace RT
 			ReviewRootObject q = new ReviewRootObject ();
 			q = await repository.RetrieveReviews (movie.links.reviews + RTApiUrls.APIKey);
 
-			RTMovieView movieView = new RTMovieView (r, q);
+			RTMovieView movieView = new RTMovieView (r, q, navControl);
 			var movieDialog = new DialogViewController (movieView.getUI(), true);
 			navControl.PushViewController(movieDialog, true);
 		}

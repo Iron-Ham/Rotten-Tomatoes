@@ -15,11 +15,13 @@ namespace RT
 		public MovieRootObject movieDetails { get; set; }
 		public ReviewRootObject reviewList { get; set; }
 		string title = null; 
-		public RTMovieView (MovieRootObject r, ReviewRootObject q) : base (UITableViewStyle.Grouped, null)
+		UINavigationController navControl;
+		public RTMovieView (MovieRootObject r, ReviewRootObject q, UINavigationController navControl) : base (UITableViewStyle.Grouped, null)
 		{
 			movieDetails = r;
 			reviewList = q;
-			this.title = r.title; 
+			this.navControl = navControl;
+			title = r.title; 
 		}
 
 		public RootElement getUI(){
@@ -35,10 +37,10 @@ namespace RT
 			Synopsis.Add (synopsisText);
 			var RootElement = new RootElement (title);
 
-			var Actors = new Section ("Cast"); 
+			var Cast = new Section ("Cast"); 
 			foreach (var actor in movieDetails.abridged_cast) {
 				var a = new StringElement (actor.name);
-				Actors.Add (a);
+				Cast.Add (a);
 			}
 
 			var MPAARating = new Section ("MPAA Rating"); 
@@ -61,24 +63,11 @@ namespace RT
 
 			var CriticReviews = new Section ("Critic Reviews");
 			foreach (Review R in reviewList.reviews) {
-				switch (R.freshness) {
-				case "rotten":
-					UIImage RTimg = UIImage.FromBundle ("rotten.png");
-					var rottenElement = new StyledMultilineElement (R.critic + "\n" + R.publication + "\n\n" + R.quote);
-					rottenElement.Image = RTimg.Scale (new SizeF (30f, 30f));
-
-					CriticReviews.Add(rottenElement);
-					break;
-				case "fresh": 
-					UIImage FTimg = UIImage.FromBundle ("fresh.png");
-					var freshElement = new StyledMultilineElement (R.critic + "\n" + R.publication + "\n\n" + R.quote);
-					freshElement.Image = FTimg.Scale (new SizeF(30f, 30f));
-					CriticReviews.Add(freshElement);
-					break;
-				}
+				var reviewEl = new ReviewElement (R);
+				CriticReviews.Add(reviewEl);
 			}
 
-			RootElement.Add (Actors);
+			RootElement.Add (Cast);
 			RootElement.Add (DirectedBy);
 			RootElement.Add (MPAARating);
 			RootElement.Add (movieRuntime);
@@ -90,4 +79,5 @@ namespace RT
 			return RootElement;
 		}
 	}
+
 }
