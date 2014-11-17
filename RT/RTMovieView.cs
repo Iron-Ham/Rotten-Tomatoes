@@ -52,7 +52,7 @@ namespace RT
 			var Genres = new Section ("Genre(s)"); 
 			foreach (var genre in movieDetails.genres) {
 				var g = new StringElement (genre);
-				Actors.Add (g);
+				Genres.Add (g);
 			}
 
 			var ReleaseDate = new Section ("Release Date"); 
@@ -64,16 +64,15 @@ namespace RT
 				switch (R.freshness) {
 				case "rotten":
 					UIImage RTimg = UIImage.FromBundle ("rotten.png");
-					var rottenElement = new StyledStringElement (R.critic + "\n" + R.publication + "\n\n" + R.quote);
-					rottenElement.Image = RTimg.Scale (new SizeF (20f, 20f));
-					rottenElement.Lines = 10;
+					var rottenElement = new StyledMultilineElement (R.critic + "\n" + R.publication + "\n\n" + R.quote);
+					rottenElement.Image = RTimg.Scale (new SizeF (30f, 30f));
+
 					CriticReviews.Add(rottenElement);
 					break;
 				case "fresh": 
-					UIImage FTimg = UIImage.FromBundle("fresh.png");
-					var freshElement = new StyledStringElement (R.critic + "\n" + R.publication + "\n\n" + R.quote);
-					freshElement.Image = FTimg.Scale (new SizeF (20f, 20f));
-					freshElement.Lines = 10;
+					UIImage FTimg = UIImage.FromBundle ("fresh.png");
+					var freshElement = new StyledMultilineElement (R.critic + "\n" + R.publication + "\n\n" + R.quote);
+					freshElement.Image = FTimg.Scale (new SizeF(30f, 30f));
 					CriticReviews.Add(freshElement);
 					break;
 				}
@@ -83,8 +82,7 @@ namespace RT
 			RootElement.Add (DirectedBy);
 			RootElement.Add (MPAARating);
 			RootElement.Add (movieRuntime);
-			if (Genres.Count > 0)
-				RootElement.Add (Genres);
+			RootElement.Add (Genres);
 			RootElement.Add (ReleaseDate);
 			RootElement.Add (Synopsis);
 			RootElement.Add(CriticReviews);

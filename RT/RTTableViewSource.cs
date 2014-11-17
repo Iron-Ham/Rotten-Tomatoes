@@ -78,13 +78,10 @@ namespace RT
 			var cell = tableView.DequeueReusableCell (RTTableViewCell.Key) as RTTableViewCell;
 			if (cell == null)
 				cell = new RTTableViewCell ();
-			// TODO: populate the cell with the appropriate data based on the indexPath
 			switch (indexPath.Section) {
 			case 0: 
-				//Opening This Week
 				IMovie openingFilm = openingMovies.movies [indexPath.Row];
 				cell.UpdateCell (openingFilm);
-
 				return cell;
 			case 1:
 				IMovie topFilm = topBox.movies[indexPath.Row];
