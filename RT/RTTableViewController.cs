@@ -17,6 +17,7 @@ namespace RT
 
 		public RTTableViewController (UINavigationController navControl) 
 		{
+			Title = "Rotten Tomatoes";
 			this.navControl = navControl;
 		}
 

@@ -2,4 +2,6 @@ packages/
 DS_Store
 RT/bin
 RT/DS_Store
-
+RT/obj
+RT.UITests/bin
+RT.UITests/packages.config
