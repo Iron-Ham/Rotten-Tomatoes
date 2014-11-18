@@ -77,7 +77,7 @@ namespace RT
 				Add (CriticScore);
 			}
 
-			if (m.abridged_cast != null) {
+			if (m.abridged_cast.Count > 0) {
 				abridgedCast.Text = (m.abridged_cast.Count > 1) ? m.abridged_cast [0].name + ", " + m.abridged_cast [1].name : m.abridged_cast [0].name;
 				Add (abridgedCast);
 			}

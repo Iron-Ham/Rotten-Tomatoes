@@ -5,3 +5,5 @@ RT/DS_Store
 RT/obj
 RT.UITests/bin
 RT.UITests/packages.config
+*.dll
+*.mdb

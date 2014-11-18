@@ -12,12 +12,13 @@ namespace RT
 	{
 		private readonly UINavigationController navControl;
 		private readonly RTRepository repository = new RTRepository();
+
 		private RTTableViewSource source; 
 
 		public RTTableViewController (UINavigationController navControl) 
 		{
-			Title = "Rotten Tomatoes";
 			this.navControl = navControl;
+			Title = "Rotten Tomatoes";
 		}
 
 		public override void ViewDidLoad ()
@@ -26,7 +27,6 @@ namespace RT
 			// Register the TableView's data source
 			source = new RTTableViewSource ();
 			TableView = new UITableView(Rectangle.Empty) {Source = source};
-			TableView.AccessibilityIdentifier = "TableView";
 			RefreshControl = new UIRefreshControl();
 			RefreshControl.ValueChanged += RefreshControlOnValueChanged;
 			source.OnRowSelect = OnRowSelect; 
@@ -34,6 +34,8 @@ namespace RT
 
 		private async void OnRowSelect(int section, int row)
 		{
+			MovieRootObject r = new MovieRootObject ();
+			ReviewRootObject q = new ReviewRootObject ();
 			IMovie movie=null;
 			switch (section) {
 			case 0:
@@ -49,15 +51,13 @@ namespace RT
 				Console.WriteLine ("Error on row select");
 				break;
 			}
-
-			MovieRootObject r = new MovieRootObject ();
 			r = await repository.RetrieveMovieDetails (movie.links.self + RTApiUrls.APIKey);
-			ReviewRootObject q = new ReviewRootObject ();
 			q = await repository.RetrieveReviews (movie.links.reviews + RTApiUrls.APIKey);
-
-			RTMovieView movieView = new RTMovieView (r, q, navControl);
-			var movieDialog = new DialogViewController (movieView.getUI(), true);
-			navControl.PushViewController(movieDialog, true);
+			if (r != null && q != null) {
+				RTMovieView movieView = new RTMovieView (r, q, navControl);
+				var movieDialog = new DialogViewController (movieView.getUI (), true);
+				navControl.PushViewController (movieDialog, true);
+			}
 		}
 
 		public async override void ViewDidAppear (bool animated)
@@ -74,10 +74,10 @@ namespace RT
 
 		private async Task LoadMoviesAsync()
 		{
-			var topBox 		  = await repository.RetrieveTopBox();
-			var inTheaters 	  = await repository.RetrieveInTheaters ();
-			var openingMovies = await repository.RetrieveOpeningMovies ();
-			
+			var topBox 		     = await repository.RetrieveTopBox();
+			var inTheaters 	     = await repository.RetrieveInTheaters ();
+			var openingMovies    = await repository.RetrieveOpeningMovies ();
+
 			source.openingMovies = openingMovies;
 			source.topBox        = topBox;
 			source.inTheaters    = inTheaters;

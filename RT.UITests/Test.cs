@@ -24,7 +24,7 @@ namespace RT.UITests
 			string currentFile = new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath;
 			FileInfo fi = new FileInfo(currentFile);
 			string dir = fi.Directory.Parent.Parent.Parent.FullName;
-			PathToIPA = Path.Combine(dir, "RT", "bin", "iPhoneSimulator", "Debug", "RTiOS.app");
+			PathToIPA = Path.Combine(dir, "RT", "bin", "iPhoneSimulator", "Debug", "RT.app");
 		}
 
 
@@ -39,8 +39,6 @@ namespace RT.UITests
 		{
 			Func<AppQuery, AppQuery> topBoxOffice = e => e.Id ("topBox0");  
 			Func<AppQuery, AppQuery> tableView = e => e.Id ("TableView");                     
-
-			_app.ScrollDown (tableView);
 			_app.WaitForElement (topBoxOffice);
 			var cell = _app.Query (topBoxOffice).SingleOrDefault();
 			var rating = cell.Label;
