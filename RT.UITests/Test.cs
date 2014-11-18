@@ -24,7 +24,7 @@ namespace RT.UITests
 			string currentFile = new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath;
 			FileInfo fi = new FileInfo(currentFile);
 			string dir = fi.Directory.Parent.Parent.Parent.FullName;
-			PathToIPA = Path.Combine(dir, "RT", "bin", "iPhoneSimulator", "Debug", "RT.app");
+			PathToIPA = Path.Combine(dir, "RT", "bin", "iPhoneSimulator", "Debug", "RTiOS.app");
 		}
 
 
@@ -37,9 +37,10 @@ namespace RT.UITests
 		[Test ()]
 		public void TestCase ()
 		{
-			Func<AppQuery, AppQuery> topBoxOffice = e => e.Id ("topBox0");  
-			Func<AppQuery, AppQuery> tableView = e => e.Id ("TableView");                     
-			_app.WaitForElement (topBoxOffice);
+			Func<AppQuery, AppQuery> topBoxOffice = e => e.Id ("topBox0");
+			//_app.ScrollDown() is bugged??
+			//Solution is to manually scroll down on test device. 
+			_app.WaitForElement (topBoxOffice, "Timed out waiting for top box office...");
 			var cell = _app.Query (topBoxOffice).SingleOrDefault();
 			var rating = cell.Label;
 			Assert.Equals (rating, "Rotten");    
