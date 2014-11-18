@@ -25,56 +25,72 @@ namespace RT
 		}
 
 		public RootElement getUI(){
-			var DirectedBy = new Section ("Directed By"); 
-			var directorString = "";
-			for (int i = 0; i < movieDetails.abridged_directors.Count; i++) 
-				directorString += (movieDetails.abridged_directors.Count - 1 == i) ? movieDetails.abridged_directors[i].name : movieDetails.abridged_directors[i].name + ", ";
-			var directors = new StringElement (directorString);
-			DirectedBy.Add (directors);
-
-			var Synopsis = new Section ("Synopsis");
-			var synopsisText = new MultilineElement (movieDetails.synopsis);
-			Synopsis.Add (synopsisText);
 			var RootElement = new RootElement (title);
 
-			var Cast = new Section ("Cast"); 
-			foreach (var actor in movieDetails.abridged_cast) {
-				var a = new StringElement (actor.name);
-				Cast.Add (a);
+			if (movieDetails.abridged_cast != null) {
+				var Cast = new Section ("Cast"); 
+				foreach (var actor in movieDetails.abridged_cast) {
+					var a = new StringElement (actor.name);
+					Cast.Add (a);
+				}
+				RootElement.Add (Cast);
 			}
 
-			var MPAARating = new Section ("MPAA Rating"); 
-			var mpaaRating = new StringElement(movieDetails.mpaa_rating);
-			MPAARating.Add (mpaaRating);
-
-			var movieRuntime = new Section ("Runtime");
-			var runtime = new StringElement (string.Format ("{0} hr. {1} min.", movieDetails.runtime / 60, movieDetails.runtime % 60));
-			movieRuntime.Add (runtime);
-
-			var Genres = new Section ("Genre(s)"); 
-			foreach (var genre in movieDetails.genres) {
-				var g = new StringElement (genre);
-				Genres.Add (g);
+			if (movieDetails.abridged_directors != null) {
+				var DirectedBy = new Section ("Directed By"); 
+				var directorString = "";
+				for (int i = 0; i < movieDetails.abridged_directors.Count; i++)
+					directorString += (movieDetails.abridged_directors.Count - 1 == i) ? movieDetails.abridged_directors [i].name : movieDetails.abridged_directors [i].name + ", ";
+				var directors = new StringElement (directorString);
+				DirectedBy.Add (directors);
+				RootElement.Add (DirectedBy);
 			}
 
-			var ReleaseDate = new Section ("Release Date"); 
-			var date = new StringElement (movieDetails.release_dates.theater);
-			ReleaseDate.Add (date);
-
-			var CriticReviews = new Section ("Critic Reviews");
-			foreach (Review R in reviewList.reviews) {
-				var reviewEl = new ReviewElement (R);
-				CriticReviews.Add(reviewEl);
+			if (movieDetails.mpaa_rating != null) {
+				var MPAARating = new Section ("MPAA Rating"); 
+				var mpaaRating = new StringElement (movieDetails.mpaa_rating);
+				MPAARating.Add (mpaaRating);
+				RootElement.Add (MPAARating);
 			}
 
-			RootElement.Add (Cast);
-			RootElement.Add (DirectedBy);
-			RootElement.Add (MPAARating);
-			RootElement.Add (movieRuntime);
-			RootElement.Add (Genres);
-			RootElement.Add (ReleaseDate);
-			RootElement.Add (Synopsis);
-			RootElement.Add(CriticReviews);
+			if (movieDetails.runtime.HasValue) {
+				var movieRuntime = new Section ("Runtime");
+				var runtime = new StringElement (string.Format ("{0} hr. {1} min.", movieDetails.runtime / 60, movieDetails.runtime % 60));
+				movieRuntime.Add (runtime);
+				RootElement.Add (movieRuntime);
+			}
+
+			if (movieDetails.genres != null) {
+				var Genres = new Section ("Genre(s)"); 
+				foreach (var genre in movieDetails.genres) {
+					var g = new StringElement (genre);
+					Genres.Add (g);
+				}
+				RootElement.Add (Genres);
+			}
+				
+			if (movieDetails.release_dates.theater != null) {
+				var ReleaseDate = new Section ("Release Date"); 
+				var date = new StringElement (movieDetails.release_dates.theater);
+				ReleaseDate.Add (date);
+				RootElement.Add (ReleaseDate);
+			}
+
+			if (movieDetails.synopsis != null) {
+				var Synopsis = new Section ("Synopsis");
+				var synopsisText = new MultilineElement (movieDetails.synopsis);
+				Synopsis.Add (synopsisText);
+				RootElement.Add (Synopsis);
+			}
+
+			if (reviewList.reviews.Count > 0) {
+				var CriticReviews = new Section ("Critic Reviews");
+				foreach (Review R in reviewList.reviews) {
+					var reviewEl = new ReviewElement (R);
+					CriticReviews.Add (reviewEl);
+				}
+				RootElement.Add (CriticReviews);
+			}
 
 			return RootElement;
 		}

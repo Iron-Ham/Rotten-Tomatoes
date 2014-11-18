@@ -52,41 +52,58 @@ namespace RT
 
 		public void UpdateCell(IMovie m)
 		{
-			if (m.ratings.critics_score != -1)
-				CriticScore.Text = m.ratings.critics_score + "%";
-			if (m.abridged_cast.Count > 0) {
-				abridgedCast.Text = (m.abridged_cast.Count > 1) ? m.abridged_cast [0].name + ", " + m.abridged_cast [1].name : m.abridged_cast [0].name;
-			}
 			NSUrl n = new NSUrl (m.posters.thumbnail);
 			NSData k = NSData.FromUrl (n);
 			Thumbnail.Image = new UIImage (k);
 			ImageView.Image = Thumbnail.Image;
-			switch (m.ratings.critics_rating) {
-			case "Certified Fresh":
-				UIImage CFimg = UIImage.FromBundle ("CF_120x120.png");
-				Freshness.Image = CFimg;
-				break;
-			case "Rotten":
-				UIImage RTimg = UIImage.FromBundle("rotten.png");
-				Freshness.Image = RTimg; 
-				break;
-			case "Fresh": 
-				UIImage FTimg = UIImage.FromBundle("fresh.png");
-				Freshness.Image = FTimg;
-				break;
+
+			if (m.ratings.critics_score != null) {
+				if (m.ratings.critics_score != -1)
+					CriticScore.Text = m.ratings.critics_score + "%";
+				switch (m.ratings.critics_rating) {
+				case "Certified Fresh":
+					UIImage CFimg = UIImage.FromBundle ("CF_120x120.png");
+					Freshness.Image = CFimg;
+					break;
+				case "Rotten":
+					UIImage RTimg = UIImage.FromBundle("rotten.png");
+					Freshness.Image = RTimg; 
+					break;
+				case "Fresh": 
+					UIImage FTimg = UIImage.FromBundle("fresh.png");
+					Freshness.Image = FTimg;
+					break;
+				}
+				Add (CriticScore);
 			}
-			RatingAndLength.Text = m.mpaa_rating + ", ";
-			Date.LineBreakMode = UILineBreakMode.WordWrap;
-			Date.Lines = 0;
-			MovieTitle.LineBreakMode = UILineBreakMode.TailTruncation;
-			MovieTitle.Text = m.title;
-			RatingAndLength.Text += m.runtime / 60 + " hr. " + m.runtime%60 + " minutes";
-			Date.Text = m.release_dates.theater;
-			Add (CriticScore);
-			Add (abridgedCast);
-			Add (RatingAndLength);
-			Add (MovieTitle);
-			Add (Date);
+
+			if (m.abridged_cast != null) {
+				abridgedCast.Text = (m.abridged_cast.Count > 1) ? m.abridged_cast [0].name + ", " + m.abridged_cast [1].name : m.abridged_cast [0].name;
+				Add (abridgedCast);
+			}
+				
+			if (m.mpaa_rating != null && m.runtime != null) {
+				RatingAndLength.Text = m.mpaa_rating + ", ";
+				RatingAndLength.Text += m.runtime / 60 + " hr. " + m.runtime % 60 + " minutes";
+				Add (RatingAndLength);
+			} else if (m.mpaa_rating != null) {
+				RatingAndLength.Text = m.mpaa_rating + ", ";
+				Add (RatingAndLength);
+			} else if (m.runtime != null) {
+				RatingAndLength.Text += m.runtime / 60 + " hr. " + m.runtime % 60 + " minutes";
+				Add (RatingAndLength);
+			}
+			if (m.release_dates.theater != null) {
+				Date.Text = m.release_dates.theater;
+				Date.LineBreakMode = UILineBreakMode.WordWrap;
+				Date.Lines = 0;
+				Add (Date);
+			}
+			if (m.title != null) {
+				MovieTitle.LineBreakMode = UILineBreakMode.TailTruncation;
+				MovieTitle.Text = m.title;
+				Add (MovieTitle);
+			}
 		}
 	}
 }

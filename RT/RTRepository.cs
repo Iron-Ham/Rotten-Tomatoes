@@ -96,10 +96,10 @@ namespace RT
 	public class Movie : IMovie
 	{
 		public string id { get; set; }
-		public string title { get; set; }
-		public int year { get; set; }
+		public string title{ get; set; }
+		public int? year { get; set; }
 		public string mpaa_rating { get; set; }
-		public int runtime { get; set; }
+		public int? runtime { get; set; }
 		public string Runtime {get; set;}
 		public ReleaseDates release_dates { get; set; }
 		public Ratings ratings { get; set; }
@@ -131,9 +131,9 @@ namespace RT
 	{
 		public string id { get; set; }
 		public string title { get; set; }
-		public int year { get; set; }
+		public int? year { get; set; }
 		public string mpaa_rating { get; set; }
-		public int runtime { get; set; }
+		public int? runtime { get; set; }
 		public string Runtime {get; set;}
 		public string critics_consensus { get; set; }
 		public ReleaseDates release_dates { get; set; }
@@ -160,9 +160,9 @@ namespace RT
 	{
 		public string id { get; set; }
 		public string title { get; set; }
-		public int year { get; set; }
+		public int? year { get; set; }
 		public string mpaa_rating { get; set; }
-		public int runtime { get; set; }
+		public int? runtime { get; set; }
 		public string Runtime {get; set;}
 		public string critics_consensus { get; set; }
 		public ReleaseDates release_dates { get; set; }
@@ -179,7 +179,7 @@ namespace RT
 		string title {get; set;}
 		string mpaa_rating { get; set; }
 		string critics_consensus { get; set; }
-		int runtime { get; set; }
+		int? runtime { get; set; }
 		Ratings ratings { get; set; }
 		List<AbridgedCast> abridged_cast { get; set; }
 		ReleaseDates release_dates { get; set; }
@@ -219,7 +219,7 @@ namespace RT
 		public int year { get; set; }
 		public List<string> genres { get; set; }
 		public string mpaa_rating { get; set; }
-		public int runtime { get; set; }
+		public int? runtime { get; set; }
 		public string critics_consensus { get; set; }
 		public ReleaseDates release_dates { get; set; }
 		public Ratings ratings { get; set; }
