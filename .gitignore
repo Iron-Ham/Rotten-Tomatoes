@@ -5,6 +5,6 @@ RT/DS_Store
 RT/obj
 RT.UITests/bin
 RT.UITests/packages.config
-Components
+RT.UITests/obj
 *.dll
 *.mdb
