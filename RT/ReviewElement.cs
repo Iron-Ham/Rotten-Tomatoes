@@ -7,6 +7,8 @@ using System.Drawing;
 
 namespace RT
 {
+	//Design pattern adapted from Miguel de Icaza's blog -- Tirania
+	//The aux. UIView for ReviewCell
 	public class ReviewCellView : UIView {
 		Review R = new Review();
 		public ReviewCellView(Review R){
@@ -19,6 +21,7 @@ namespace RT
 		}
 	}
 
+	//The cell which forms the basis of the Review element. 
 	public class ReviewCell : UITableViewCell {
 		ReviewCellView rcv; 
 		UILabel publication, critic, quote; 
@@ -69,7 +72,7 @@ namespace RT
 
 	}
 
-
+	//Element that holds a review cell
 	public class ReviewElement : Element, IElementSizing
 	{
 		static NSString key = new NSString ("myReviewElement");

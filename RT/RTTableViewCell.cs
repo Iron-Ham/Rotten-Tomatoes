@@ -7,6 +7,7 @@ using MonoTouch.UIKit;
 
 namespace RT
 {
+	//The cell for each movie in the initial screen
 	public class RTTableViewCell : UITableViewCell
 	{
 		public static readonly NSString Key = new NSString ("RTTableViewCell");
@@ -69,11 +70,11 @@ namespace RT
 				Freshness.Image = CFimg;
 				break;
 			case "Rotten":
-				UIImage RTimg = UIImage.FromBundle("rotten.png");
+				UIImage RTimg = UIImage.FromBundle ("rotten.png");
 				Freshness.Image = RTimg; 
 				break;
 			case "Fresh": 
-				UIImage FTimg = UIImage.FromBundle("fresh.png");
+				UIImage FTimg = UIImage.FromBundle ("fresh.png");
 				Freshness.Image = FTimg;
 				break;
 			}

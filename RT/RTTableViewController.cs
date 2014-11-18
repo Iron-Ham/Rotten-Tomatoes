@@ -8,6 +8,8 @@ using MonoTouch.Dialog;
 
 namespace RT
 {
+	//HomeView
+	//Table of 3 sections
 	public class RTTableViewController : UITableViewController
 	{
 		private readonly UINavigationController navControl;

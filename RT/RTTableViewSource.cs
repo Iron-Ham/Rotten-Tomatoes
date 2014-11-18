@@ -8,6 +8,7 @@ using MonoTouch.UIKit;
 
 namespace RT
 {
+	//Data source for RTTableViewController
 	public class RTTableViewSource : UITableViewSource
 	{
 		public TopBoxRootObject topBox { get; set;} 
@@ -21,7 +22,6 @@ namespace RT
 		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
 			tableView.DeselectRow(indexPath, true);
-
 			if (OnRowSelect != null)
 			{
 				OnRowSelect(indexPath.Section, indexPath.Row);

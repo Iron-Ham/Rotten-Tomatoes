@@ -9,6 +9,7 @@ using MonoTouch.Dialog;
 
 namespace RT
 {
+	//The view controller for the individual movie page.
 	public partial class RTMovieView : DialogViewController
 	{
 		public MovieRootObject movieDetails { get; set; }
@@ -26,7 +27,6 @@ namespace RT
 
 		public RootElement getUI(){
 			var RootElement = new RootElement (title);
-
 			if (movieDetails.abridged_cast != null) {
 				var Cast = new Section ("Cast"); 
 				foreach (var actor in movieDetails.abridged_cast) {

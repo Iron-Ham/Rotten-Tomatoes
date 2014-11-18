@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace RT
 {
+	//Handles fetching all data.
 	public class RTRepository
 	{
 

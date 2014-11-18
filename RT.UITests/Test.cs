@@ -43,7 +43,7 @@ namespace RT.UITests
 			_app.WaitForElement (topBoxOffice, "Timed out waiting for top box office...");
 			var cell = _app.Query (topBoxOffice).SingleOrDefault();
 			var rating = cell.Label;
-			Assert.Equals (rating, "Rotten");    
+			Assert.Equals (rating, "Fresh");    
 		}
 	}
 }
