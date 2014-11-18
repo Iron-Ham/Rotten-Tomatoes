@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Drawing;
@@ -14,12 +13,13 @@ namespace RT
 	{
 		public MovieRootObject movieDetails { get; set; }
 		public ReviewRootObject reviewList { get; set; }
+		public RTRepository repository { get; set; }
 		string title = null; 
 		UINavigationController navControl;
 		public RTMovieView (MovieRootObject r, ReviewRootObject q, UINavigationController navControl) : base (UITableViewStyle.Grouped, null)
 		{
 			movieDetails = r;
-			reviewList = q;
+			reviewList = q; 
 			this.navControl = navControl;
 			title = r.title; 
 		}

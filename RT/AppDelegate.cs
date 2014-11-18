@@ -34,6 +34,7 @@ namespace RT
 			{
 				RootViewController = navControl
 			};
+
 			navControl.PushViewController (new RTTableViewController (navControl), false);
 			Window.MakeKeyAndVisible ();
 			#if DEBUG

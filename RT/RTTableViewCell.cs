@@ -60,21 +60,22 @@ namespace RT
 			if (m.ratings.critics_score != null) {
 				if (m.ratings.critics_score != -1)
 					CriticScore.Text = m.ratings.critics_score + "%";
-				switch (m.ratings.critics_rating) {
-				case "Certified Fresh":
-					UIImage CFimg = UIImage.FromBundle ("CF_120x120.png");
-					Freshness.Image = CFimg;
-					break;
-				case "Rotten":
-					UIImage RTimg = UIImage.FromBundle("rotten.png");
-					Freshness.Image = RTimg; 
-					break;
-				case "Fresh": 
-					UIImage FTimg = UIImage.FromBundle("fresh.png");
-					Freshness.Image = FTimg;
-					break;
-				}
 				Add (CriticScore);
+			}
+
+			switch (m.ratings.critics_rating) {
+			case "Certified Fresh":
+				UIImage CFimg = UIImage.FromBundle ("CF_120x120.png");
+				Freshness.Image = CFimg;
+				break;
+			case "Rotten":
+				UIImage RTimg = UIImage.FromBundle("rotten.png");
+				Freshness.Image = RTimg; 
+				break;
+			case "Fresh": 
+				UIImage FTimg = UIImage.FromBundle("fresh.png");
+				Freshness.Image = FTimg;
+				break;
 			}
 
 			if (m.abridged_cast.Count > 0) {
