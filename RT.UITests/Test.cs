@@ -38,8 +38,7 @@ namespace RT.UITests
 		public void TestCase ()
 		{
 			Func<AppQuery, AppQuery> topBoxOffice = e => e.Id ("topBox0");
-			//_app.ScrollDown() is bugged??
-			//Solution is to manually scroll down on test device. 
+			_app.ScrollDown(); // is bugged in simulator. Only works on real devices -- I have no test device at the moment
 			_app.WaitForElement (topBoxOffice, "Timed out waiting for top box office...");
 			var cell = _app.Query (topBoxOffice).SingleOrDefault();
 			var rating = cell.Label;
