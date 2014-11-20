@@ -27,7 +27,7 @@ namespace RT
 
 		public RootElement getUI(){
 			var RootElement = new RootElement (title);
-			if (movieDetails.abridged_cast != null) {
+			if (movieDetails.abridged_cast.Count > 0) {
 				var Cast = new Section ("Cast"); 
 				foreach (var actor in movieDetails.abridged_cast) {
 					var a = new StringElement (actor.name);
@@ -36,7 +36,7 @@ namespace RT
 				RootElement.Add (Cast);
 			}
 
-			if (movieDetails.abridged_directors != null) {
+			if (movieDetails.abridged_directors.Count > 0) {
 				var DirectedBy = new Section ("Directed By"); 
 				var directorString = "";
 				for (int i = 0; i < movieDetails.abridged_directors.Count; i++)
@@ -60,7 +60,7 @@ namespace RT
 				RootElement.Add (movieRuntime);
 			}
 
-			if (movieDetails.genres != null) {
+			if (movieDetails.genres.Count > 0) {
 				var Genres = new Section ("Genre(s)"); 
 				foreach (var genre in movieDetails.genres) {
 					var g = new StringElement (genre);

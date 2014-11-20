@@ -30,7 +30,7 @@
 	-r \
 	/Users/heshamsalman/Projects/Rotten-Tomatoes/Components/calabash-11.4/lib/ios/Calabash.dll \
 	-debug \
-	-nolink \
+	-linksdkonly \
 	-sdk \
 	8.1 \
 	-targetver \
