@@ -59,8 +59,8 @@ namespace RT
 
 	public class Ratings
 	{
-		public int critics_score { get; set; }
-		public int audience_score { get; set; }
+		public int? critics_score { get; set; }
+		public int? audience_score { get; set; }
 		public string critics_rating { get; set; }
 		public string audience_rating { get; set; }
 	}
@@ -199,7 +199,7 @@ namespace RT
 		
 	public class InTheatersRootObject
 	{
-		public int total { get; set; }
+		public int? total { get; set; }
 		public List<Movie3> movies { get; set; }
 		public Links3 links { get; set; }
 		public string link_template { get; set; }
@@ -215,7 +215,7 @@ namespace RT
 
 	public class MovieRootObject
 	{
-		public int id { get; set; }
+		public int? id { get; set; }
 		public string title { get; set; }
 		public int year { get; set; }
 		public List<string> genres { get; set; }
@@ -260,7 +260,7 @@ namespace RT
 
 	public class ReviewRootObject
 	{
-		public int total { get; set; }
+		public int? total { get; set; }
 		public List<Review> reviews { get; set; }
 		public ReviewLinks2 links { get; set; }
 		public string link_template { get; set; }
