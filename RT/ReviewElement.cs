@@ -46,11 +46,13 @@ namespace RT
 			quote.Lines = 3; 
 			quote.Font = UIFont.SystemFontOfSize (14f);
 			quote.LineBreakMode = UILineBreakMode.TailTruncation;
+			rcv.AddSubview (freshness);
+			rcv.AddSubview (critic);
+			rcv.AddSubview (publication);
+			rcv.AddSubview (quote);
+
+
 			ContentView.Add (rcv);
-			ContentView.Add (freshness);
-			ContentView.Add (critic);
-			ContentView.Add (publication);
-			ContentView.Add (quote);
 		}
 
 		public override void LayoutSubviews ()
@@ -75,12 +77,13 @@ namespace RT
 	//Element that holds a review cell
 	public class ReviewElement : Element, IElementSizing
 	{
-		static NSString key = new NSString ("myReviewElement");
+		static NSString key;
 		public Review r; 
 
 		public ReviewElement (Review R) : base (null)
 		{
 			r = R; 
+			key = new NSString(r.critic);
 		}
 		readonly float cellHeight = 100f;
 		public float GetHeight (UITableView tableView, NSIndexPath indexPath)
@@ -91,9 +94,10 @@ namespace RT
 
 		public override UITableViewCell GetCell (UITableView tv)
 		{
-			var cell = tv.DequeueReusableCell (key) as ReviewCell;
-			if (cell == null)
-				cell = new ReviewCell (r, key);
+			var cell = tv.DequeueReusableCell (r.critic) as ReviewCell;
+			if (cell == null) 
+				cell = new ReviewCell (r, new NSString(r.critic));
+			cell.Updatecell (r);
 			return cell;
 
 		}
