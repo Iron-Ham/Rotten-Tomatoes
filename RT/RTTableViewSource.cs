@@ -26,7 +26,7 @@ namespace RT
 		public override UIView GetViewForHeader(UITableView tableView, int section)
 		{
 			var header = new UIView(new RectangleF(0, 0, 320, 40));
-			header.BackgroundColor = UIColor.FromRGB(92, 222, 51);
+			header.BackgroundColor = UIColor.FromRGB(30, 124, 0);
 
 			var headerLabel = new UILabel(new RectangleF(10, 0, 320, 40))
 			{
@@ -45,7 +45,7 @@ namespace RT
 				headerLabel.Text = "Also In Theaters";
 				break;
 			default:
-				headerLabel.Text = "";
+				headerLabel.Text = null;
 				break;
 			}
 			header.Add(headerLabel);

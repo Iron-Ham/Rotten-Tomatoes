@@ -85,7 +85,6 @@ namespace RT
 
 			if (reviewList.reviews.Count > 0) {
 				var CriticReviews = new Section ("Critic Reviews");
-				Console.WriteLine (reviewList.reviews.Count + "\t" + reviewList.total);
 				foreach (Review R in reviewList.reviews) {
 					var reviewEl = new ReviewElement (R);
 					CriticReviews.Add (reviewEl);
