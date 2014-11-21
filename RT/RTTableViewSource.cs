@@ -1,8 +1,6 @@
-﻿
-using System;
+﻿using System;
 using System.Drawing;
 using System.Collections.Generic;
-
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
@@ -110,27 +108,24 @@ namespace RT
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			var cell = tableView.DequeueReusableCell (ValueCell) as RTTableViewCell;
-			if (cell == null)
-				cell = new RTTableViewCell (ID);
+			IMovie Movie = null; 
 			switch (indexPath.Section) {
 			case 0: 
-				IMovie openingFilm = openingMovies.movies [indexPath.Row];
-				cell.UpdateCell (openingFilm);
-				return cell;
+				Movie = openingMovies.movies [indexPath.Row];
+				break;
 			case 1:
-				IMovie topFilm = topBox.movies [indexPath.Row];
-				cell.UpdateCell (topFilm);
-				cell.AccessibilityIdentifier = "topBox" + indexPath.Row;
-				cell.AccessibilityLabel = topFilm.ratings.critics_rating;
-				return cell;
+				Movie = topBox.movies [indexPath.Row];
+				break;
 			case 2:
-				IMovie alsoRanFilm = inTheaters.movies[indexPath.Row];
-				cell.UpdateCell(alsoRanFilm);
-				return cell;
-			default:
-				return cell;
+				Movie = inTheaters.movies [indexPath.Row];
+				break;
 			}
+
+			var cell = tableView.DequeueReusableCell (Movie.id) as RTTableViewCell;
+			if (cell == null)
+				cell = new RTTableViewCell (Movie.id);
+			cell.UpdateCell (Movie);
+			return cell; 
 		}
 
 		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)

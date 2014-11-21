@@ -178,6 +178,7 @@ namespace RT
 	public interface IMovie 
 	{
 		string title {get; set;}
+		string id {get; set;}
 		string mpaa_rating { get; set; }
 		string critics_consensus { get; set; }
 		int? runtime { get; set; }

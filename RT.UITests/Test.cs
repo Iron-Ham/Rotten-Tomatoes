@@ -32,17 +32,24 @@ namespace RT.UITests
 		public void SetUp()
 		{
 			_app = ConfigureApp.iOS.AppBundle(PathToIPA).StartApp();
+			_app.ScrollDown(); // is bugged in simulator. Only works on real devices -- I have no test device at the moment
 		}
 
 		[Test ()]
 		public void TestCase ()
 		{
 			Func<AppQuery, AppQuery> topBoxOffice = e => e.Id ("topBox0");
-			_app.ScrollDown(); // is bugged in simulator. Only works on real devices -- I have no test device at the moment
-			_app.WaitForElement (topBoxOffice, "Timed out waiting for top box office...");
+			TimeSpan p = new TimeSpan (10);
+			_app.DragCoordinates (150, 400, 150, 50, p);
+			_app.WaitForElement (topBoxOffice);
 			var cell = _app.Query (topBoxOffice).SingleOrDefault();
 			var rating = cell.Label;
-			Assert.Equals (rating, "Fresh");    
+			var fresh = "Fresh";
+			if (rating.Equals (fresh)) {
+				Assert.Pass ();
+			} else {
+				Assert.Fail ();
+			}
 		}
 	}
 }
