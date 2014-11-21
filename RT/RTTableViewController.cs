@@ -20,7 +20,13 @@ namespace RT
 		public RTTableViewController (UINavigationController navControl) 
 		{
 			this.navControl = navControl;
+			var navigationBar = navControl.NavigationBar;
+			navigationBar.BarTintColor = UIColor.FromRGB (245, 56, 82);
+			navigationBar.TintColor = UIColor.FromRGB (92, 222, 51);
+			navigationBar.SetTitleTextAttributes(new UITextAttributes() { TextColor = UIColor.White });
+			navigationBar.Translucent = false;
 			Title = "Rotten Tomatoes";
+
 		}
 
 		public override void ViewDidLoad ()

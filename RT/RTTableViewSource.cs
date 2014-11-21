@@ -18,6 +18,39 @@ namespace RT
 		private const string ValueCell = "Id";
 		private NSString ID = (NSString) "Id";
 
+		public override float GetHeightForHeader(UITableView tableView, int section)
+		{
+			return 40;
+		}
+
+		public override UIView GetViewForHeader(UITableView tableView, int section)
+		{
+			var header = new UIView(new RectangleF(0, 0, 320, 40));
+			header.BackgroundColor = UIColor.FromRGB(92, 222, 51);
+
+			var headerLabel = new UILabel(new RectangleF(10, 0, 320, 40))
+			{
+				TextColor = UIColor.White
+			};
+
+			switch (section)
+			{
+			case 0: 
+				headerLabel.Text = "Opening This Week";
+				break;
+			case 1: 
+				headerLabel.Text = "Top Box Office";
+				break;
+			case 2: 
+				headerLabel.Text = "Also In Theaters";
+				break;
+			default:
+				headerLabel.Text = "";
+				break;
+			}
+			header.Add(headerLabel);
+			return header;
+		}
 
 		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
