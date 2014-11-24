@@ -15,9 +15,9 @@ namespace RT
 		private readonly UINavigationController navControl;
 		private readonly RTRepository repository = new RTRepository();
 
-		private RTTableViewSource source; 
-
-		public RTTableViewController (UINavigationController navControl) 
+		private RTTableViewSource source;
+		//constructor
+		public RTTableViewController (UINavigationController navControl)
 		{
 			this.navControl = navControl;
 			var navigationBar = navControl.NavigationBar;
@@ -37,7 +37,7 @@ namespace RT
 			TableView = new UITableView(Rectangle.Empty) {Source = source};
 			RefreshControl = new UIRefreshControl();
 			RefreshControl.ValueChanged += RefreshControlOnValueChanged;
-			source.OnRowSelect = OnRowSelect; 
+			source.OnRowSelect = OnRowSelect;
 		}
 
 		private async void OnRowSelect(int section, int row)
@@ -48,7 +48,7 @@ namespace RT
 			switch (section) {
 			case 0:
 				movie = source.openingMovies.movies [row];
-				break; 
+				break;
 			case 1:
 				movie = source.topBox.movies [row];
 				break;
@@ -82,13 +82,13 @@ namespace RT
 
 		private async Task LoadMoviesAsync()
 		{
-			var topBox 		     = await repository.RetrieveTopBox();
-			var inTheaters 	     = await repository.RetrieveInTheaters ();
-			var openingMovies    = await repository.RetrieveOpeningMovies ();
+			var topBox						= await repository.RetrieveTopBox();
+			var inTheaters				= await repository.RetrieveInTheaters ();
+			var openingMovies			= await repository.RetrieveOpeningMovies ();
 
-			source.openingMovies = openingMovies;
-			source.topBox        = topBox;
-			source.inTheaters    = inTheaters;
+			source.openingMovies	= openingMovies;
+			source.topBox					= topBox;
+			source.inTheaters			= inTheaters;
 
 			TableView.ReloadData();
 		}

@@ -15,20 +15,21 @@ namespace RT
 		public MovieRootObject movieDetails { get; set; }
 		public ReviewRootObject reviewList { get; set; }
 		public RTRepository repository { get; set; }
-		string title = null; 
+		string title = null;
 		UINavigationController navControl;
+		//Constructor
 		public RTMovieView (MovieRootObject r, ReviewRootObject q, UINavigationController navControl) : base (UITableViewStyle.Grouped, null)
 		{
 			movieDetails = r;
-			reviewList = q; 
+			reviewList = q;
 			this.navControl = navControl;
-			title = r.title; 
+			title = r.title;
 		}
-
+		//Lays-out subviews and fills their info. 
 		public RootElement getUI(){
 			var RootElement = new RootElement (title);
 			if (movieDetails.abridged_cast.Count > 0) {
-				var Cast = new Section ("Cast"); 
+				var Cast = new Section ("Cast");
 				foreach (var actor in movieDetails.abridged_cast) {
 					var a = new StringElement (actor.name);
 					Cast.Add (a);
@@ -37,10 +38,10 @@ namespace RT
 			}
 
 			if (movieDetails.abridged_directors.Count > 0) {
-				var DirectedBy = new Section ("Directed By"); 
+				var DirectedBy = new Section ("Directed By");
 				var directorString = "";
 				for (int i = 0; i < movieDetails.abridged_directors.Count; i++)
-					directorString += (movieDetails.abridged_directors.Count - 1 == i) ? 
+					directorString += (movieDetails.abridged_directors.Count - 1 == i) ?
 						movieDetails.abridged_directors [i].name : movieDetails.abridged_directors [i].name + ", ";
 				var directors = new StringElement (directorString);
 				DirectedBy.Add (directors);
@@ -48,7 +49,7 @@ namespace RT
 			}
 
 			if (movieDetails.mpaa_rating != null) {
-				var MPAARating = new Section ("MPAA Rating"); 
+				var MPAARating = new Section ("MPAA Rating");
 				var mpaaRating = new StringElement (movieDetails.mpaa_rating);
 				MPAARating.Add (mpaaRating);
 				RootElement.Add (MPAARating);
@@ -62,16 +63,16 @@ namespace RT
 			}
 
 			if (movieDetails.genres.Count > 0) {
-				var Genres = new Section ("Genre(s)"); 
+				var Genres = new Section ("Genre(s)");
 				foreach (var genre in movieDetails.genres) {
 					var g = new StringElement (genre);
 					Genres.Add (g);
 				}
 				RootElement.Add (Genres);
 			}
-				
+
 			if (movieDetails.release_dates.theater != null) {
-				var ReleaseDate = new Section ("Release Date"); 
+				var ReleaseDate = new Section ("Release Date");
 				var date = new StringElement (movieDetails.release_dates.theater);
 				ReleaseDate.Add (date);
 				RootElement.Add (ReleaseDate);

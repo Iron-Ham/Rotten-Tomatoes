@@ -49,8 +49,7 @@ namespace RT
 			return JsonConvert.DeserializeObject<ReviewRootObject> (result);
 		}
 	}
-
-
+	//Models mirroring JSON files
 	public class ReleaseDates
 	{
 		public string theater { get; set; }
@@ -85,7 +84,7 @@ namespace RT
 		public string imdb { get; set; }
 	}
 
-	public class Links 
+	public class Links
 	{
 		public string self { get; set; }
 		public string alternate { get; set; }
@@ -127,7 +126,7 @@ namespace RT
 			movies = new List<Movie> ();
 		}
 	}
-		
+
 	public class Movie2 : IMovie
 	{
 		public string id { get; set; }
@@ -175,7 +174,7 @@ namespace RT
 		public Links links { get; set; }
 	}
 
-	public interface IMovie 
+	public interface IMovie
 	{
 		string title {get; set;}
 		string id {get; set;}
@@ -197,7 +196,7 @@ namespace RT
 		public string next { get; set; }
 		public string alternate { get; set; }
 	}
-		
+
 	public class InTheatersRootObject
 	{
 		public int? total { get; set; }
@@ -269,4 +268,3 @@ namespace RT
 
 
 }
-

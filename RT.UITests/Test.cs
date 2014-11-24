@@ -38,18 +38,18 @@ namespace RT.UITests
 		[Test ()]
 		public void TestCase ()
 		{
+			Func<AppQuery, AppQuery> tableView = e => e.Class ("UITableView");
 			Func<AppQuery, AppQuery> topBoxOffice = e => e.Id ("topBox0");
 			TimeSpan p = new TimeSpan (10);
-			_app.DragCoordinates (150, 400, 150, 50, p);
-			_app.WaitForElement (topBoxOffice);
-			var cell = _app.Query (topBoxOffice).SingleOrDefault();
-			var rating = cell.Label;
-			var fresh = "Fresh";
-			if (rating.Equals (fresh)) {
-				Assert.Pass ();
-			} else {
-				Assert.Fail ();
-			}
+			_app.Repl ();
+			//_app.DragCoordinates (150, 400, 150, 50, p); Nope.
+			//_app.ScrollDown(); Bugged on the simulator. Xamarin Test Cloud is sim-only
+//			_app.FlickCoordinates (150, 400, 150, 50);
+//			_app.WaitForElement (topBoxOffice);
+//			var cell = _app.Query (topBoxOffice).SingleOrDefault();
+//			var rating = cell.Label;
+//			var fresh = "Fresh";
+//			}
 		}
 	}
 }
