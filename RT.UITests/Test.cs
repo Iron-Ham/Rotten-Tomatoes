@@ -32,7 +32,6 @@ namespace RT.UITests
 		public void SetUp()
 		{
 			_app = ConfigureApp.iOS.AppBundle(PathToIPA).StartApp();
-			_app.ScrollDown(); // is bugged in simulator. Only works on real devices -- I have no test device at the moment
 		}
 
 		[Test ()]
@@ -42,10 +41,10 @@ namespace RT.UITests
 			Func<AppQuery, AppQuery> topBoxOffice = e => e.Id ("topBox0");
 			TimeSpan p = new TimeSpan (10);
 			_app.Repl ();
-			//_app.DragCoordinates (150, 400, 150, 50, p); Nope.
-			//_app.ScrollDown(); Bugged on the simulator. Xamarin Test Cloud is sim-only
-//			_app.FlickCoordinates (150, 400, 150, 50);
-//			_app.WaitForElement (topBoxOffice);
+//		  _app.DragCoordinates (150, 400, 150, 50, p); Nope.
+//		  _app.ScrollDown(); Bugged on the simulator. Xamarin Test Cloud is sim-only
+//			_app.FlickCoordinates (150, 400, 150, 50); Nope
+//			_app.WaitForElement (topBoxOffice); 
 //			var cell = _app.Query (topBoxOffice).SingleOrDefault();
 //			var rating = cell.Label;
 //			var fresh = "Fresh";
@@ -53,4 +52,3 @@ namespace RT.UITests
 		}
 	}
 }
-
