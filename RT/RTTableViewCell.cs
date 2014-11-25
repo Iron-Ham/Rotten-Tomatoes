@@ -25,7 +25,8 @@ namespace RT
 			Thumbnail.Image = new UIImage (k);
 			MovieTitle = new UILabel () {
 				Font = UIFont.SystemFontOfSize (12f),
-				Lines = 2
+				Lines = 2,
+				LineBreakMode = UILineBreakMode.WordWrap
 			};
 			CriticScore = new UILabel () {
 				Font = UIFont.SystemFontOfSize (11f)
@@ -94,7 +95,7 @@ namespace RT
 				RatingAndLength.Text += m.runtime / 60 + " hr. " + m.runtime % 60 + " minutes";
 				Add (RatingAndLength);
 			} else if (m.mpaa_rating != null) {
-				RatingAndLength.Text = m.mpaa_rating + ", ";
+				RatingAndLength.Text = m.mpaa_rating;
 				Add (RatingAndLength);
 			} else if (m.runtime != null) {
 				RatingAndLength.Text += m.runtime / 60 + " hr. " + m.runtime % 60 + " minutes";
@@ -102,12 +103,10 @@ namespace RT
 			}
 			if (m.release_dates.theater != null) {
 				Date.Text = m.release_dates.theater;
-				Date.LineBreakMode = UILineBreakMode.WordWrap;
 				Date.Lines = 0;
 				Add (Date);
 			}
 			if (m.title != null) {
-				MovieTitle.LineBreakMode = UILineBreakMode.WordWrap;
 				MovieTitle.Text = m.title;
 				Add (MovieTitle);
 			}
