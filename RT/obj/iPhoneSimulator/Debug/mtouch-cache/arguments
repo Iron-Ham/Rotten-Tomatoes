@@ -1,14 +1,14 @@
 # Version: 8.4.0.16 (80e9ff7)
-# [first argument, ignore] # /Users/heshamsalman/Projects/Rotten-Tomatoes/RT/bin/iPhoneSimulator/Debug/mtouch.exe
+# [first argument, ignore] # /Users/heshamsalman/Documents/Rotten-Tomatoes/RT/bin/iPhoneSimulator/Debug/mtouch.exe
 /Library/Frameworks/Xamarin.iOS.framework/Versions/8.4.0.16/bin/mtouch \
 	-sdkroot \
 	/Applications/Xcode.app/Contents/Developer \
 	--cache \
-	/Users/heshamsalman/Projects/Rotten-Tomatoes/RT/obj/iPhoneSimulator/Debug/mtouch-cache \
+	/Users/heshamsalman/Documents/Rotten-Tomatoes/RT/obj/iPhoneSimulator/Debug/mtouch-cache \
 	--nomanifest \
 	--nosign \
 	-sim \
-	/Users/heshamsalman/Projects/Rotten-Tomatoes/RT/bin/iPhoneSimulator/Debug/RTiOS.app \
+	/Users/heshamsalman/Documents/Rotten-Tomatoes/RT/bin/iPhoneSimulator/Debug/RTiOS.app \
 	-r \
 	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/2.1/System.dll \
 	-r \
@@ -18,17 +18,17 @@
 	-r \
 	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/2.1/monotouch.dll \
 	-r \
-	/Users/heshamsalman/Projects/Rotten-Tomatoes/packages/Newtonsoft.Json.6.0.6/lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll \
+	/Users/heshamsalman/Documents/Rotten-Tomatoes/packages/Newtonsoft.Json.6.0.6/lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll \
 	-r \
-	/Users/heshamsalman/Projects/Rotten-Tomatoes/packages/Microsoft.Net.Http.2.2.28/lib/monotouch/System.Net.Http.Primitives.dll \
+	/Users/heshamsalman/Documents/Rotten-Tomatoes/packages/Microsoft.Net.Http.2.2.28/lib/monotouch/System.Net.Http.Primitives.dll \
 	-r \
-	/Users/heshamsalman/Projects/Rotten-Tomatoes/packages/Microsoft.Net.Http.2.2.28/lib/monotouch/System.Net.Http.Extensions.dll \
+	/Users/heshamsalman/Documents/Rotten-Tomatoes/packages/Microsoft.Net.Http.2.2.28/lib/monotouch/System.Net.Http.Extensions.dll \
 	-r \
 	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/2.1/System.Net.Http.dll \
 	-r \
 	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/2.1/MonoTouch.Dialog-1.dll \
 	-r \
-	/Users/heshamsalman/Projects/Rotten-Tomatoes/Components/calabash-11.4/lib/ios/Calabash.dll \
+	/Users/heshamsalman/Documents/Rotten-Tomatoes/Components/calabash-11.4/lib/ios/Calabash.dll \
 	-debug \
 	-nolink \
 	-sdk \
@@ -36,4 +36,4 @@
 	-targetver \
 	7.0 \
 	--abi=i386 \
-	/Users/heshamsalman/Projects/Rotten-Tomatoes/RT/bin/iPhoneSimulator/Debug/RT.exe \
+	/Users/heshamsalman/Documents/Rotten-Tomatoes/RT/bin/iPhoneSimulator/Debug/RT.exe \

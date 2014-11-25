@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MonoTouch.Dialog;
+using System.Diagnostics;
 
 namespace RT
 {
@@ -12,12 +13,13 @@ namespace RT
 	{
 		private readonly UINavigationController navControl;
 		private readonly RTRepository repository = new RTRepository();
-
+		private Stopwatch RowTime = new Stopwatch();
 		private RTTableViewSource source; 
 
 		public RTTableViewController (UINavigationController navControl) 
 		{
 			this.navControl = navControl;
+			RowTime.Start ();
 			Title = "Rotten Tomatoes";
 		}
 
@@ -51,12 +53,15 @@ namespace RT
 				Console.WriteLine ("Error on row select");
 				break;
 			}
-			r = await repository.RetrieveMovieDetails (movie.links.self + RTApiUrls.APIKey);
-			q = await repository.RetrieveReviews (movie.links.reviews + RTApiUrls.APIKey);
-			if (r != null && q != null) {
-				RTMovieView movieView = new RTMovieView (r, q, navControl);
-				var movieDialog = new DialogViewController (movieView.getUI (), true);
-				navControl.PushViewController (movieDialog, true);
+			if (RowTime.ElapsedMilliseconds > 1000) {
+				r = await repository.RetrieveMovieDetails (movie.links.self + RTApiUrls.APIKey);
+				q = await repository.RetrieveReviews (movie.links.reviews + RTApiUrls.APIKey);
+				if (r != null && q != null) {
+					RTMovieView movieView = new RTMovieView (r, q, navControl);
+					var movieDialog = new DialogViewController (movieView.getUI (), true);
+					navControl.PushViewController (movieDialog, true);
+				}
+				RowTime.Restart ();
 			}
 		}
 
