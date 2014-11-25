@@ -37,7 +37,7 @@ namespace RT
 				RootElement.Add (Cast);
 			}
 
-			if (movieDetails.abridged_directors.Count > 0) {
+			if (movieDetails.abridged_directors != null) {
 				var DirectedBy = new Section ("Directed By");
 				var directorString = "";
 				for (int i = 0; i < movieDetails.abridged_directors.Count; i++)
@@ -62,7 +62,7 @@ namespace RT
 				RootElement.Add (movieRuntime);
 			}
 
-			if (movieDetails.genres.Count > 0) {
+			if (movieDetails.genres != null) {
 				var Genres = new Section ("Genre(s)");
 				foreach (var genre in movieDetails.genres) {
 					var g = new StringElement (genre);
@@ -85,7 +85,7 @@ namespace RT
 				RootElement.Add (Synopsis);
 			}
 
-			if (reviewList.reviews.Count > 0) {
+			if (reviewList.reviews != null) {
 				var CriticReviews = new Section ("Critic Reviews");
 				foreach (Review R in reviewList.reviews) {
 					var reviewEl = new ReviewElement (R);

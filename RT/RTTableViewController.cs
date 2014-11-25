@@ -23,7 +23,7 @@ namespace RT
 			var navigationBar = navControl.NavigationBar;
 			navigationBar.BarTintColor = UIColor.FromRGB (245, 56, 82);
 			navigationBar.TintColor = UIColor.FromRGB (92, 222, 51);
-			navigationBar.SetTitleTextAttributes(new UITextAttributes() { TextColor = UIColor.White });
+			navigationBar.SetTitleTextAttributes (new UITextAttributes () { TextColor = UIColor.White });
 			navigationBar.Translucent = false;
 			Title = "Rotten Tomatoes";
 		}
