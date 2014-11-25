@@ -96,10 +96,6 @@ namespace RT
 				RatingAndLength.Text += m.runtime / 60 + " hr. " + m.runtime % 60 + " minutes";
 				Add (RatingAndLength);
 			}
-			if (m.release_dates.theater != null) {
-				Date.Text = m.release_dates.theater;
-				Add (Date);
-			}
 			if (m.title != null) {
 				MovieTitle.Text = m.title;
 				Add (MovieTitle);
