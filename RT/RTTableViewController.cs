@@ -15,20 +15,17 @@ namespace RT
 	{
 		private readonly UINavigationController navControl;
 		private readonly RTRepository repository = new RTRepository();
-		private Stopwatch RowTime = new Stopwatch();
 		private RTTableViewSource source; 
 
 		public RTTableViewController (UINavigationController navControl) 
 		{
 			this.navControl = navControl;
-			RowTime.Start ();
 			var navigationBar = navControl.NavigationBar;
 			navigationBar.BarTintColor = UIColor.FromRGB (245, 56, 82);
 			navigationBar.TintColor = UIColor.FromRGB (92, 222, 51);
 			navigationBar.SetTitleTextAttributes(new UITextAttributes() { TextColor = UIColor.White });
 			navigationBar.Translucent = false;
 			Title = "Rotten Tomatoes";
-
 		}
 
 		public override void ViewDidLoad ()
@@ -61,15 +58,12 @@ namespace RT
 				Console.WriteLine ("Error on row select");
 				break;
 			}
-			if (RowTime.ElapsedMilliseconds > 2000) {
-				r = await repository.RetrieveMovieDetails (movie.links.self + RTApiUrls.APIKey);
-				q = await repository.RetrieveReviews (movie.links.reviews + RTApiUrls.APIKey);
-				if (r != null && q != null) {
-					RTMovieView movieView = new RTMovieView (r, q, navControl);
-					var movieDialog = new DialogViewController (movieView.getUI (), true);
-					navControl.PushViewController (movieDialog, true);
-				}
-				RowTime.Restart ();
+			r = await repository.RetrieveMovieDetails (movie.links.self + RTApiUrls.APIKey);
+			q = await repository.RetrieveReviews (movie.links.reviews + RTApiUrls.APIKey);
+			if (r != null && q != null) {
+				RTMovieView movieView = new RTMovieView (r, q, navControl);
+				var movieDialog = new DialogViewController (movieView.getUI (), true);
+				navControl.PushViewController (movieDialog, true);
 			}
 		}
 
