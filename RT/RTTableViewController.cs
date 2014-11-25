@@ -15,7 +15,6 @@ namespace RT
 	{
 		private readonly UINavigationController navControl;
 		private readonly RTRepository repository = new RTRepository();
-<<<<<<< HEAD
 		private Stopwatch RowTime = new Stopwatch();
 		private RTTableViewSource source; 
 
@@ -23,19 +22,11 @@ namespace RT
 		{
 			this.navControl = navControl;
 			RowTime.Start ();
-=======
-
-		private RTTableViewSource source;
-		//constructor
-		public RTTableViewController (UINavigationController navControl)
-		{
-			this.navControl = navControl;
 			var navigationBar = navControl.NavigationBar;
 			navigationBar.BarTintColor = UIColor.FromRGB (245, 56, 82);
 			navigationBar.TintColor = UIColor.FromRGB (92, 222, 51);
 			navigationBar.SetTitleTextAttributes(new UITextAttributes() { TextColor = UIColor.White });
 			navigationBar.Translucent = false;
->>>>>>> FETCH_HEAD
 			Title = "Rotten Tomatoes";
 
 		}
@@ -70,7 +61,7 @@ namespace RT
 				Console.WriteLine ("Error on row select");
 				break;
 			}
-			if (RowTime.ElapsedMilliseconds > 1000) {
+			if (RowTime.ElapsedMilliseconds > 2000) {
 				r = await repository.RetrieveMovieDetails (movie.links.self + RTApiUrls.APIKey);
 				q = await repository.RetrieveReviews (movie.links.reviews + RTApiUrls.APIKey);
 				if (r != null && q != null) {
@@ -96,12 +87,12 @@ namespace RT
 
 		private async Task LoadMoviesAsync()
 		{
-			var topBox						= await repository.RetrieveTopBox();
+			var topBox					= await repository.RetrieveTopBox();
 			var inTheaters				= await repository.RetrieveInTheaters ();
 			var openingMovies			= await repository.RetrieveOpeningMovies ();
 
-			source.openingMovies	= openingMovies;
-			source.topBox					= topBox;
+			source.openingMovies		= openingMovies;
+			source.topBox				= topBox;
 			source.inTheaters			= inTheaters;
 
 			TableView.ReloadData();

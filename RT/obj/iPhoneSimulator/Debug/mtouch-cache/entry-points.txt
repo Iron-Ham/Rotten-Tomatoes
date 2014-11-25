@@ -1,3 +1,4 @@
+monotouch_GetFolderPath
 monotouch_timezone_get_data
 monotouch_log
 monotouch_release_managed_ref
