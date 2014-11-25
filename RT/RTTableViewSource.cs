@@ -88,7 +88,6 @@ namespace RT
 
 		public override int NumberOfSections (UITableView tableView)
 		{
-			// TODO: return the actual number of sections
 			return 3;
 		}
 
