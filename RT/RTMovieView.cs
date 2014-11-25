@@ -40,11 +40,10 @@ namespace RT
 			if (movieDetails.abridged_directors != null) {
 				var DirectedBy = new Section ("Directed By");
 				var directorString = "";
-				for (int i = 0; i < movieDetails.abridged_directors.Count; i++)
-					directorString += (movieDetails.abridged_directors.Count - 1 == i) ?
-						movieDetails.abridged_directors [i].name : movieDetails.abridged_directors [i].name + ", ";
-				var directors = new StringElement (directorString);
-				DirectedBy.Add (directors);
+				foreach (var director in movieDetails.abridged_directors) {
+					var d = new StringElement (director.name);
+					DirectedBy.Add (d);
+				}
 				RootElement.Add (DirectedBy);
 			}
 
