@@ -13,11 +13,16 @@ namespace RT
 		public static readonly NSString Key = new NSString ("RTTableViewCell");
 		public UILabel MovieTitle, CriticScore, abridgedCast, RatingAndLength, Date;
 		public UIImageView Thumbnail, Freshness;
+		IMovie m;
 		//Constructor
-		public RTTableViewCell (string id) : base (UITableViewCellStyle.Default, id)
+		public RTTableViewCell (string id, IMovie movie) : base (UITableViewCellStyle.Default, id)
 		{
+			m = movie;
 			Thumbnail = new UIImageView ();
 			Freshness = new UIImageView ();
+			NSUrl n = new NSUrl (m.posters.thumbnail);
+			NSData k = NSData.FromUrl (n);
+			Thumbnail.Image = new UIImage (k);
 			MovieTitle = new UILabel () {
 				Font = UIFont.SystemFontOfSize (12f)
 			};
@@ -53,13 +58,10 @@ namespace RT
 		}
 
 		//Updates all cell info.
-		public void UpdateCell(IMovie m)
+		public void UpdateCell()
 		{
-			NSUrl n = new NSUrl (m.posters.thumbnail);
-			NSData k = NSData.FromUrl (n);
-			Thumbnail.Image = new UIImage (k);
-			ImageView.Image = Thumbnail.Image;
 
+			ImageView.Image = Thumbnail.Image;
 			if (m.ratings.critics_score != null) {
 				if (m.ratings.critics_score != -1)
 					CriticScore.Text = m.ratings.critics_score + "%";

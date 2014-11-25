@@ -127,8 +127,8 @@ namespace RT
 
 			var cell = tableView.DequeueReusableCell (Movie.id) as RTTableViewCell;
 			if (cell == null)
-				cell = new RTTableViewCell (Movie.id);
-			cell.UpdateCell (Movie);
+				cell = new RTTableViewCell (Movie.id, Movie);
+			cell.UpdateCell ();
 			return cell; 
 		}
 
