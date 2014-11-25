@@ -37,16 +37,11 @@ namespace RT
 			RatingAndLength = new UILabel () {
 				Font = UIFont.SystemFontOfSize (11f)
 			};
-			Date = new UILabel () {
-				Font = UIFont.SystemFontOfSize (11f)
-			};
 			ContentView.Add (MovieTitle);
 			ContentView.Add (CriticScore);
 			ContentView.Add (abridgedCast);
 			ContentView.Add (RatingAndLength);
 			ContentView.Add (Freshness);
-			ContentView.Add (Date);
-
 		}
 
 		public override void LayoutSubviews ()
