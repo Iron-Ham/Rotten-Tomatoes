@@ -24,7 +24,8 @@ namespace RT
 			NSData k = NSData.FromUrl (n);
 			Thumbnail.Image = new UIImage (k);
 			MovieTitle = new UILabel () {
-				Font = UIFont.SystemFontOfSize (12f)
+				Font = UIFont.SystemFontOfSize (12f),
+				Lines = 2
 			};
 			CriticScore = new UILabel () {
 				Font = UIFont.SystemFontOfSize (11f)
@@ -50,11 +51,11 @@ namespace RT
 		public override void LayoutSubviews ()
 		{
 			base.LayoutSubviews ();
-			CriticScore.Frame = new RectangleF (108, 56, 212, 25);
-			RatingAndLength.Frame = new RectangleF (90, 41, 230, 25);
-			abridgedCast.Frame = new RectangleF (90, 28, 230, 25);
-			Freshness.Frame = new RectangleF (90, 60, 15, 15);
-			MovieTitle.Frame = new RectangleF (90, 5, 230, 25);
+			CriticScore.Frame = new RectangleF (108, 61, 212, 25);
+			RatingAndLength.Frame = new RectangleF (90, 46, 230, 25);
+			abridgedCast.Frame = new RectangleF (90, 33, 230, 25);
+			Freshness.Frame = new RectangleF (90, 65, 15, 15);
+			MovieTitle.Frame = new RectangleF (90, 5, 230, 35);
 		}
 
 		//Updates all cell info.
@@ -106,7 +107,7 @@ namespace RT
 				Add (Date);
 			}
 			if (m.title != null) {
-				MovieTitle.LineBreakMode = UILineBreakMode.TailTruncation;
+				MovieTitle.LineBreakMode = UILineBreakMode.WordWrap;
 				MovieTitle.Text = m.title;
 				Add (MovieTitle);
 			}
