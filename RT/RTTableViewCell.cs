@@ -103,7 +103,6 @@ namespace RT
 			}
 			if (m.release_dates.theater != null) {
 				Date.Text = m.release_dates.theater;
-				Date.Lines = 0;
 				Add (Date);
 			}
 			if (m.title != null) {
