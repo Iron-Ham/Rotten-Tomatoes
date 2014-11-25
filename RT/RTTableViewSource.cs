@@ -103,8 +103,6 @@ namespace RT
 
 		public override int RowsInSection (UITableView tableview, int section)
 		{
-			// TODO: return the actual number of items in the section
-
 			switch (section) {
 			case 0:
 				return openingMovies.movies.Count;
