@@ -84,7 +84,7 @@ namespace RT
 				RootElement.Add (Synopsis);
 			}
 
-			if (reviewList.reviews != null) {
+			if (reviewList.reviews != null && reviewList.total > 0) {
 				var CriticReviews = new Section ("Critic Reviews");
 				foreach (Review R in reviewList.reviews) {
 					var reviewEl = new ReviewElement (R);
