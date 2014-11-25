@@ -9,10 +9,13 @@ using System.Diagnostics;
 
 namespace RT
 {
+	//HomeView
+	//Table of 3 sections
 	public class RTTableViewController : UITableViewController
 	{
 		private readonly UINavigationController navControl;
 		private readonly RTRepository repository = new RTRepository();
+<<<<<<< HEAD
 		private Stopwatch RowTime = new Stopwatch();
 		private RTTableViewSource source; 
 
@@ -20,7 +23,21 @@ namespace RT
 		{
 			this.navControl = navControl;
 			RowTime.Start ();
+=======
+
+		private RTTableViewSource source;
+		//constructor
+		public RTTableViewController (UINavigationController navControl)
+		{
+			this.navControl = navControl;
+			var navigationBar = navControl.NavigationBar;
+			navigationBar.BarTintColor = UIColor.FromRGB (245, 56, 82);
+			navigationBar.TintColor = UIColor.FromRGB (92, 222, 51);
+			navigationBar.SetTitleTextAttributes(new UITextAttributes() { TextColor = UIColor.White });
+			navigationBar.Translucent = false;
+>>>>>>> FETCH_HEAD
 			Title = "Rotten Tomatoes";
+
 		}
 
 		public override void ViewDidLoad ()
@@ -31,7 +48,7 @@ namespace RT
 			TableView = new UITableView(Rectangle.Empty) {Source = source};
 			RefreshControl = new UIRefreshControl();
 			RefreshControl.ValueChanged += RefreshControlOnValueChanged;
-			source.OnRowSelect = OnRowSelect; 
+			source.OnRowSelect = OnRowSelect;
 		}
 
 		private async void OnRowSelect(int section, int row)
@@ -42,7 +59,7 @@ namespace RT
 			switch (section) {
 			case 0:
 				movie = source.openingMovies.movies [row];
-				break; 
+				break;
 			case 1:
 				movie = source.topBox.movies [row];
 				break;
@@ -79,13 +96,13 @@ namespace RT
 
 		private async Task LoadMoviesAsync()
 		{
-			var topBox 		     = await repository.RetrieveTopBox();
-			var inTheaters 	     = await repository.RetrieveInTheaters ();
-			var openingMovies    = await repository.RetrieveOpeningMovies ();
+			var topBox						= await repository.RetrieveTopBox();
+			var inTheaters				= await repository.RetrieveInTheaters ();
+			var openingMovies			= await repository.RetrieveOpeningMovies ();
 
-			source.openingMovies = openingMovies;
-			source.topBox        = topBox;
-			source.inTheaters    = inTheaters;
+			source.openingMovies	= openingMovies;
+			source.topBox					= topBox;
+			source.inTheaters			= inTheaters;
 
 			TableView.ReloadData();
 		}

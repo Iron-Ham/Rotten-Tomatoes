@@ -4,6 +4,7 @@ using MonoTouch.UIKit;
 
 namespace RT
 {
+	//A wrapper for a UIWebView
 	public class ReviewView : UIViewController
 	{
 		private readonly string url; 

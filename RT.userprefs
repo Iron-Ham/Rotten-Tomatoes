@@ -1,27 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone6Plus.8.1" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="RT/RTTableViewSource.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="RT/RTTableViewController.cs">
     <Files>
-      <File FileName="RT/RTMovieView.cs" Line="36" Column="36" />
-      <File FileName="RT/RTTableViewCell.cs" Line="22" Column="22" />
-      <File FileName="RT/RTTableViewController.cs" Line="4" Column="4" />
-      <File FileName="RT/RTRepository.cs" Line="14" Column="14" />
-      <File FileName="RT/RTApiUrls.cs" Line="43" Column="43" />
+      <File FileName="RT/RTMovieView.cs" Line="1" Column="1" />
+      <File FileName="RT/RTTableViewCell.cs" Line="1" Column="1" />
+      <File FileName="RT/RTTableViewController.cs" Line="5" Column="5" />
+      <File FileName="RT/RTRepository.cs" Line="1" Column="1" />
+      <File FileName="RT/RTApiUrls.cs" Line="1" Column="1" />
       <File FileName="RT/Main.cs" Line="1" Column="1" />
-      <File FileName="RT/ReviewElement.cs" Line="4" Column="4" />
-      <File FileName="RT/ReviewView.cs" Line="19" Column="19" />
+      <File FileName="RT/ReviewElement.cs" Line="1" Column="1" />
+      <File FileName="RT/ReviewView.cs" Line="1" Column="1" />
       <File FileName="RT/RTTableViewSource.cs" Line="9" Column="9" />
       <File FileName="RT/AppDelegate.cs" Line="1" Column="1" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="RT" expanded="True">
-            <Node name="RTRepository.cs" selected="True" />
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

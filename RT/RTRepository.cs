@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace RT
 {
+	//Handles fetching all data.
 	public class RTRepository
 	{
 
@@ -48,8 +49,7 @@ namespace RT
 			return JsonConvert.DeserializeObject<ReviewRootObject> (result);
 		}
 	}
-
-
+	//Models mirroring JSON files
 	public class ReleaseDates
 	{
 		public string theater { get; set; }
@@ -58,8 +58,8 @@ namespace RT
 
 	public class Ratings
 	{
-		public int critics_score { get; set; }
-		public int audience_score { get; set; }
+		public int? critics_score { get; set; }
+		public int? audience_score { get; set; }
 		public string critics_rating { get; set; }
 		public string audience_rating { get; set; }
 	}
@@ -84,7 +84,7 @@ namespace RT
 		public string imdb { get; set; }
 	}
 
-	public class Links 
+	public class Links
 	{
 		public string self { get; set; }
 		public string alternate { get; set; }
@@ -126,7 +126,7 @@ namespace RT
 			movies = new List<Movie> ();
 		}
 	}
-		
+
 	public class Movie2 : IMovie
 	{
 		public string id { get; set; }
@@ -174,9 +174,10 @@ namespace RT
 		public Links links { get; set; }
 	}
 
-	public interface IMovie 
+	public interface IMovie
 	{
 		string title {get; set;}
+		string id {get; set;}
 		string mpaa_rating { get; set; }
 		string critics_consensus { get; set; }
 		int? runtime { get; set; }
@@ -195,10 +196,10 @@ namespace RT
 		public string next { get; set; }
 		public string alternate { get; set; }
 	}
-		
+
 	public class InTheatersRootObject
 	{
-		public int total { get; set; }
+		public int? total { get; set; }
 		public List<Movie3> movies { get; set; }
 		public Links3 links { get; set; }
 		public string link_template { get; set; }
@@ -214,7 +215,7 @@ namespace RT
 
 	public class MovieRootObject
 	{
-		public int id { get; set; }
+		public int? id { get; set; }
 		public string title { get; set; }
 		public int year { get; set; }
 		public List<string> genres { get; set; }
@@ -259,7 +260,7 @@ namespace RT
 
 	public class ReviewRootObject
 	{
-		public int total { get; set; }
+		public int? total { get; set; }
 		public List<Review> reviews { get; set; }
 		public ReviewLinks2 links { get; set; }
 		public string link_template { get; set; }
@@ -267,4 +268,3 @@ namespace RT
 
 
 }
-

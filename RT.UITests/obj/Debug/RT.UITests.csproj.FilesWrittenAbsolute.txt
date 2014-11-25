@@ -1,7 +1,7 @@
-/Users/heshamsalman/Documents/Rotten-Tomatoes/RT.UITests/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
-/Users/heshamsalman/Documents/Rotten-Tomatoes/RT.UITests/bin/Debug/RT.UITests.dll.mdb
-/Users/heshamsalman/Documents/Rotten-Tomatoes/RT.UITests/bin/Debug/RT.UITests.dll
-/Users/heshamsalman/Documents/Rotten-Tomatoes/RT.UITests/obj/Debug/RT.UITests.dll
-/Users/heshamsalman/Documents/Rotten-Tomatoes/RT.UITests/obj/Debug/RT.UITests.dll.mdb
-/Users/heshamsalman/Documents/Rotten-Tomatoes/RT.UITests/bin/Debug/nunit.framework.dll
-/Users/heshamsalman/Documents/Rotten-Tomatoes/RT.UITests/bin/Debug/Xamarin.UITest.dll
+/Users/heshamsalman/Projects/Rotten-Tomatoes/RT.UITests/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/heshamsalman/Projects/Rotten-Tomatoes/RT.UITests/bin/Debug/RT.UITests.dll.mdb
+/Users/heshamsalman/Projects/Rotten-Tomatoes/RT.UITests/bin/Debug/RT.UITests.dll
+/Users/heshamsalman/Projects/Rotten-Tomatoes/RT.UITests/obj/Debug/RT.UITests.dll
+/Users/heshamsalman/Projects/Rotten-Tomatoes/RT.UITests/obj/Debug/RT.UITests.dll.mdb
+/Users/heshamsalman/Projects/Rotten-Tomatoes/RT.UITests/bin/Debug/nunit.framework.dll
+/Users/heshamsalman/Projects/Rotten-Tomatoes/RT.UITests/bin/Debug/Xamarin.UITest.dll

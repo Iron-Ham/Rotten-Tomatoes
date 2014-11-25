@@ -7,11 +7,13 @@ using MonoTouch.UIKit;
 
 namespace RT
 {
+	//The cell for each movie in the initial screen
 	public class RTTableViewCell : UITableViewCell
 	{
 		public static readonly NSString Key = new NSString ("RTTableViewCell");
 		public UILabel MovieTitle, CriticScore, abridgedCast, RatingAndLength, Date;
 		public UIImageView Thumbnail, Freshness;
+		//Constructor
 		public RTTableViewCell (string id) : base (UITableViewCellStyle.Default, id)
 		{
 			Thumbnail = new UIImageView ();
@@ -50,6 +52,7 @@ namespace RT
 			MovieTitle.Frame = new RectangleF (90, 5, 230, 25);
 		}
 
+		//Updates all cell info.
 		public void UpdateCell(IMovie m)
 		{
 			NSUrl n = new NSUrl (m.posters.thumbnail);
@@ -60,28 +63,29 @@ namespace RT
 			if (m.ratings.critics_score != null) {
 				if (m.ratings.critics_score != -1)
 					CriticScore.Text = m.ratings.critics_score + "%";
-				switch (m.ratings.critics_rating) {
-				case "Certified Fresh":
-					UIImage CFimg = UIImage.FromBundle ("CF_120x120.png");
-					Freshness.Image = CFimg;
-					break;
-				case "Rotten":
-					UIImage RTimg = UIImage.FromBundle("rotten.png");
-					Freshness.Image = RTimg; 
-					break;
-				case "Fresh": 
-					UIImage FTimg = UIImage.FromBundle("fresh.png");
-					Freshness.Image = FTimg;
-					break;
-				}
 				Add (CriticScore);
+			}
+
+			switch (m.ratings.critics_rating) {
+			case "Certified Fresh":
+				UIImage CFimg = UIImage.FromBundle ("CF_120x120.png");
+				Freshness.Image = CFimg;
+				break;
+			case "Rotten":
+				UIImage RTimg = UIImage.FromBundle ("rotten.png");
+				Freshness.Image = RTimg;
+				break;
+			case "Fresh":
+				UIImage FTimg = UIImage.FromBundle ("fresh.png");
+				Freshness.Image = FTimg;
+				break;
 			}
 
 			if (m.abridged_cast.Count > 0) {
 				abridgedCast.Text = (m.abridged_cast.Count > 1) ? m.abridged_cast [0].name + ", " + m.abridged_cast [1].name : m.abridged_cast [0].name;
 				Add (abridgedCast);
 			}
-				
+
 			if (m.mpaa_rating != null && m.runtime != null) {
 				RatingAndLength.Text = m.mpaa_rating + ", ";
 				RatingAndLength.Text += m.runtime / 60 + " hr. " + m.runtime % 60 + " minutes";
@@ -107,4 +111,3 @@ namespace RT
 		}
 	}
 }
-

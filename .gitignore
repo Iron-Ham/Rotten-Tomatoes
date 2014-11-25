@@ -5,5 +5,14 @@ RT/DS_Store
 RT/obj
 RT.UITests/bin
 RT.UITests/packages.config
+RT/RTMovieElement.cs
+RT/RTTableView.cs
+RT.UITests/obj
 *.dll
 *.mdb
+
+*.mdb
+
+*.exe
+
+*.dll
