@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Collections.Generic;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using System.Diagnostics;
 
 namespace RT
 {
@@ -15,7 +16,7 @@ namespace RT
 		public Action<int, int> OnRowSelect;
 		private const string ValueCell = "Id";
 		private NSString ID = (NSString) "Id";
-
+		private Stopwatch timer { get; set; }
 		public override float GetHeightForHeader(UITableView tableView, int section)
 		{
 			return 40;
@@ -53,8 +54,9 @@ namespace RT
 		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
 			tableView.DeselectRow(indexPath, true);
-			if (OnRowSelect != null)
+			if (OnRowSelect != null && timer.ElapsedMilliseconds > 2000)
 			{
+				timer.Restart ();
 				OnRowSelect(indexPath.Section, indexPath.Row);
 			}
 		}
@@ -65,6 +67,8 @@ namespace RT
 			topBox = new TopBoxRootObject ();
 			inTheaters = new InTheatersRootObject ();
 			openingMovies = new OpeningRootObject ();
+			timer = new Stopwatch();
+			timer.Start ();
 		}
 
 		public override int NumberOfSections (UITableView tableView)
