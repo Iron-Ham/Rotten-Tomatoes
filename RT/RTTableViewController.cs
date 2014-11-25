@@ -28,17 +28,19 @@ namespace RT
 			Title = "Rotten Tomatoes";
 		}
 
-		public override void ViewDidLoad ()
+		private async Task LoadMoviesAsync()
 		{
-			base.ViewDidLoad ();
-			// Register the TableView's data source
-			source = new RTTableViewSource ();
-			TableView = new UITableView(Rectangle.Empty) {Source = source};
-			RefreshControl = new UIRefreshControl();
-			RefreshControl.ValueChanged += RefreshControlOnValueChanged;
-			source.OnRowSelect = OnRowSelect;
-		}
+			var topBox					= await repository.RetrieveTopBox();
+			var inTheaters				= await repository.RetrieveInTheaters ();
+			var openingMovies			= await repository.RetrieveOpeningMovies ();
 
+			source.openingMovies		= openingMovies;
+			source.topBox				= topBox;
+			source.inTheaters			= inTheaters;
+
+			TableView.ReloadData();
+		}
+			
 		private async void OnRowSelect(int section, int row)
 		{
 			MovieRootObject r = new MovieRootObject ();
@@ -67,29 +69,27 @@ namespace RT
 			}
 		}
 
-		public async override void ViewDidAppear (bool animated)
-		{
-			base.ViewDidAppear (animated);
-			await LoadMoviesAsync ();
-		}
-
 		private async void RefreshControlOnValueChanged(object sender, EventArgs eventArgs)
 		{
 			await LoadMoviesAsync();
 			RefreshControl.EndRefreshing();
 		}
 
-		private async Task LoadMoviesAsync()
+		public async override void ViewDidAppear (bool animated)
 		{
-			var topBox					= await repository.RetrieveTopBox();
-			var inTheaters				= await repository.RetrieveInTheaters ();
-			var openingMovies			= await repository.RetrieveOpeningMovies ();
+			base.ViewDidAppear (animated);
+			await LoadMoviesAsync ();
+		}
 
-			source.openingMovies		= openingMovies;
-			source.topBox				= topBox;
-			source.inTheaters			= inTheaters;
-
-			TableView.ReloadData();
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
+			// Register the TableView's data source
+			source = new RTTableViewSource ();
+			TableView = new UITableView(Rectangle.Empty) {Source = source};
+			RefreshControl = new UIRefreshControl();
+			RefreshControl.ValueChanged += RefreshControlOnValueChanged;
+			source.OnRowSelect = OnRowSelect;
 		}
 	}
 }
