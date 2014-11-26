@@ -81,19 +81,19 @@ namespace RT
 			}
 
 			if (m.abridged_cast.Count > 0) {
-				abridgedCast.Text = (m.abridged_cast.Count > 1) ? m.abridged_cast [0].name + ", " + m.abridged_cast [1].name : m.abridged_cast [0].name;
+				abridgedCast.Text = (m.abridged_cast.Count > 1) ? string.Format("{0}, {1}", m.abridged_cast [0].name, m.abridged_cast [1].name) : m.abridged_cast [0].name;
 				Add (abridgedCast);
 			}
 
 			if (m.mpaa_rating != null && m.runtime != null) {
 				RatingAndLength.Text = m.mpaa_rating + ", ";
-				RatingAndLength.Text += m.runtime / 60 + " hr. " + m.runtime % 60 + " minutes";
+				RatingAndLength.Text += string.Format ("{0} hr. {1} min.", m.runtime / 60,  m.runtime % 60);
 				Add (RatingAndLength);
 			} else if (m.mpaa_rating != null) {
 				RatingAndLength.Text = m.mpaa_rating;
 				Add (RatingAndLength);
 			} else if (m.runtime != null) {
-				RatingAndLength.Text += m.runtime / 60 + " hr. " + m.runtime % 60 + " minutes";
+				RatingAndLength.Text = string.Format ("{0} hr. {1} min.", m.runtime / 60,  m.runtime % 60);
 				Add (RatingAndLength);
 			}
 			if (m.title != null) {
