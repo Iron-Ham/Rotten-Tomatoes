@@ -28,7 +28,7 @@ namespace RT
 		//Lays-out subviews and fills their info. 
 		public RootElement getUI(){
 			var RootElement = new RootElement (title);
-			if (movieDetails.abridged_cast.Count > 0) {
+			if (movieDetails.abridged_cast != null) {
 				var Cast = new Section ("Cast");
 				foreach (var actor in movieDetails.abridged_cast) {
 					var a = new StringElement (actor.name);
